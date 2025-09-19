@@ -1,0 +1,48 @@
+# Stage 1: Base Image
+# ashleykza/a1111:1.10.0.post7
+FROM nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04
+
+# Setting timezome. This saves time when installing python. 
+# RUN ln -snf /usr/share/zoneinfo/$CONTAINER_TIMEZONE /etc/localtime && echo $CONTAINER_TIMEZONE > /etc/timezone
+
+RUN apt update && \
+  apt upgrade -y && \
+  apt install -y \
+  # Python:
+  python3-dev \
+  python3-pip \
+  # python3.12-venv \
+  python3.10-venv \
+  # For running multiple services:
+  supervisor \
+  # Other
+  nano \
+  wget \
+  ffmpeg\
+  git && \
+  apt-get autoremove -y && \
+  rm -rf /var/lib/apt/lists/* && \
+  apt-get clean -y
+
+
+  
+# RUN pip install requests runpod==1.7.7 huggingface_hub
+
+
+
+RUN echo "Installing CopyParty dependencies."
+
+
+
+RUN	apt update
+RUN apt-get install tmux -y
+
+COPY scripts/installComfyUI.sh ./
+# COPY scripts/installComfyUI.sh /${workspace}/
+# WORKDIR /${workspace}
+RUN chmod +x ./installComfyUI.sh
+
+# EXPOSE 8188
+RUN echo "$PWD"
+# ENTRYPOINT ["ls"]
+ENTRYPOINT ["./installComfyUI.sh"]
