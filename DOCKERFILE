@@ -28,21 +28,23 @@ RUN apt update && \
   
 # RUN pip install requests runpod==1.7.7 huggingface_hub
 
-
-
 RUN echo "Installing CopyParty dependencies."
 
+# RUN	apt update
+# RUN apt-get install tmux -y
 
-
-RUN	apt update
-RUN apt-get install tmux -y
-
-COPY scripts/installComfyUI.sh ./
-# COPY scripts/installComfyUI.sh /${workspace}/
-# WORKDIR /${workspace}
+COPY scripts/ .
 RUN chmod +x ./installComfyUI.sh
+RUN chmod +x ./installCopyParty.sh
+
+RUN mkdir workspace
+
 
 # EXPOSE 8188
+
+
 RUN echo "$PWD"
 # ENTRYPOINT ["ls"]
-ENTRYPOINT ["./installComfyUI.sh"]
+# ENTRYPOINT ["./installComfyUI.sh"]
+CMD ["supervisord","-c","./service_script.conf"]
+

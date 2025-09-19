@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   runpod-comfy-ui:
-    image: walmann/runpodcomfyui:latest
+    # image: walmann/runpodcomfyui:latest
     deploy:
       resources:
         reservations:
@@ -14,10 +14,7 @@ services:
       - /workspace:/workspace
     ports:
       - "3000:3001"
-      - "3010:3011"
-      - "3020:3021"
-      - "6006:6066"
-      - "8888:8888"
+      - "3923:3923"
     environment:
       JUPYTER_PASSWORD: "Jup1t3R!"
       ENABLE_TENSORBOARD: "1"
