@@ -7,28 +7,7 @@ rootModels="/workspace/ComfyUI/models"
 rootCustomNodes="/workspace/ComfyUI/custom_nodes"
 cd $rootWorkspace
 
-git_get_nodes(){
-    local folderName="$2"
 
-    cd $rootCustomNodes
-    # TODO Make it check for Custom
-    if [ -d "$folderName" ]; then
-        echo "Node already exists, updating..."
-        cd "$folderName"
-        git pull
-    else
-        echo "Node not found"
-        # echo "List of files in $ folder: "
-        echo "Cloning: "
-        git clone "$1" "$folderName"
-    fi
-
-    echo Installing dependencies for "$folderName"
-
-    cd /"$rootCustomNodes/$folderName"
-    pip install -r requirements.txt
-    cd $rootComfyUI
-}
 
 
 
@@ -95,12 +74,30 @@ cd $rootComfyUI
 echo "ComfyUI: Installing requirements"
 pip install -r requirements.txt
 
-# Installing Lora manager:
-git_get_nodes "https://github.com/willmiao/ComfyUI-Lora-Manager.git" "ComfyUI-Lora-Manager"
-# cd $rootCustomNodes
-# git clone https://github.com/willmiao/ComfyUI-Lora-Manager.git
-# cd ComfyUI-Lora-Manager
-# pip install -r requirements.txt
+
+
+git_get_nodes(){
+    local folderName="$2"
+
+    cd $rootCustomNodes
+    # TODO Make it check for Custom
+    if [ -d "$folderName" ]; then
+        echo "Node already exists, updating..."
+        cd "$folderName"
+        git pull
+    else
+        echo "Node not found"
+        # echo "List of files in $ folder: "
+        echo "Cloning: "
+        git clone "$1" "$folderName"
+    fi
+
+    echo Installing dependencies for "$folderName"
+
+    cd /"$rootCustomNodes/$folderName"
+    pip install -r requirements.txt
+    cd $rootComfyUI
+}
 
 
 # Installing ComfyUI Manager:
@@ -109,6 +106,16 @@ git_get_nodes "https://github.com/ltdrdata/ComfyUI-Manager" "comfyui-manager"
 # git clone https://github.com/ltdrdata/ComfyUI-Manager comfyui-manager
 # pip install -r requirements.txt
 
+
+# Installing Lora manager:
+git_get_nodes "https://github.com/willmiao/ComfyUI-Lora-Manager.git" "ComfyUI-Lora-Manager"
+# cd $rootCustomNodes
+# git clone https://github.com/willmiao/ComfyUI-Lora-Manager.git
+# cd ComfyUI-Lora-Manager
+# pip install -r requirements.txt
+
+
+git_get_nodes "git clone https://github.com/VraethrDalkr/ComfyUI-TripleKSampler.git" "ComfyUI-TripleKSampler"
 
 
 cd $rootComfyUI
