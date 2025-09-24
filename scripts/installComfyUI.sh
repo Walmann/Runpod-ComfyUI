@@ -122,6 +122,10 @@ git_get_nodes "https://github.com/kijai/ComfyUI-WanVideoWrapper" "ComfyUI-WanVid
 git_get_nodes "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite" "ComfyUI-VideoHelperSuite"
 
 
+# Wan2.2 Animate
+git_get_nodes "https://github.com/Fannovel16/comfyui_controlnet_aux/" "comfyui_controlnet_aux"
+git_get_nodes "https://github.com/kijai/ComfyUI-KJNodes" "ComfyUI-KJNodes"
+git_get_nodes "https://github.com/kijai/ComfyUI-segment-anything-2" "ComfyUI-segment-anything-2"
 
 
 get_models(){
