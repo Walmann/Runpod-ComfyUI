@@ -64,7 +64,14 @@ else
 fi
 
 # Install some known missing packages: 
-pip install opencv-python requests runpod==1.7.7 huggingface_hub huggingface_hub[cli]
+pip install \
+    opencv-python \
+    requests \
+    runpod==1.7.7 \
+    huggingface_hub \
+    huggingface_hub[cli] \
+    onnxruntime-gpu \
+    sageattention
 
 
 
@@ -152,6 +159,9 @@ get_models "diffusion_models/WAN2.2Animate" "https://huggingface.co/Kijai/WanVid
 get_models "loras/WAN2.2Animate" "https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/Lightx2v/lightx2v_I2V_14B_480p_cfg_step_distill_rank64_bf16.safetensors"
 get_models "loras/WAN2.2Animate" "https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/WanAnimate_relight_lora_fp16.safetensors"
 get_models "clip_vision/WAN2.2Animate" "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/clip_vision/clip_vision_h.safetensors"
+
+# Wan2.2 Animate GGUF
+get_models "unet/WAN2.2Animate" "https://huggingface.co/QuantStack/Wan2.2-Animate-14B-GGUF/resolve/main/Wan2.2-Animate-14B-Q8_0.gguf"
 
 # Qwen 2509
 get_models "diffusion_models/qwen2509" "https://huggingface.co/Comfy-Org/Qwen-Image-Edit_ComfyUI/resolve/main/split_files/diffusion_models/qwen_image_edit_2509_fp8_e4m3fn.safetensors"
