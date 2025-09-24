@@ -2,7 +2,8 @@
 # PORTS
 | PORT  | App |
 | ------| ------- |
-| 8000  | CopyParty |
+| 3001  | ComfyUI |
+| 3923  | CopyParty |
 
 
 

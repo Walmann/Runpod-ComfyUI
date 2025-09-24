@@ -64,7 +64,7 @@ else
 fi
 
 # Install some known missing packages: 
-pip install opencv-python requests runpod==1.7.7 huggingface_hub
+pip install opencv-python requests runpod==1.7.7 huggingface_hub huggingface_hub[cli]
 
 
 
@@ -72,8 +72,7 @@ pip install opencv-python requests runpod==1.7.7 huggingface_hub
 echo "ComfyUI: Entering Dir"
 cd $rootComfyUI
 echo "ComfyUI: Installing requirements"
-pip install -r requirements.txt
-
+pip install -r requirements.txt   | grep -v 'already satisfied'
 
 
 git_get_nodes(){
@@ -94,8 +93,8 @@ git_get_nodes(){
 
     echo Installing dependencies for "$folderName"
 
-    cd /"$rootCustomNodes/$folderName"
-    pip install -r requirements.txt
+    cd "$rootCustomNodes/$folderName"
+    pip install -r requirements.txt  | grep -v 'already satisfied'
     cd $rootComfyUI
 }
 
@@ -108,14 +107,44 @@ git_get_nodes "https://github.com/ltdrdata/ComfyUI-Manager" "comfyui-manager"
 
 
 # Installing Lora manager:
-git_get_nodes "https://github.com/willmiao/ComfyUI-Lora-Manager.git" "ComfyUI-Lora-Manager"
+# git_get_nodes "https://github.com/willmiao/ComfyUI-Lora-Manager.git" "ComfyUI-Lora-Manager"
 # cd $rootCustomNodes
 # git clone https://github.com/willmiao/ComfyUI-Lora-Manager.git
 # cd ComfyUI-Lora-Manager
 # pip install -r requirements.txt
 
+# Install model manager.
+git_get_nodes "https://github.com/hayden-fr/ComfyUI-Model-Manager.git" "ComfyUI-Model-Manager"
 
-git_get_nodes "git clone https://github.com/VraethrDalkr/ComfyUI-TripleKSampler.git" "ComfyUI-TripleKSampler"
+
+git_get_nodes "https://github.com/VraethrDalkr/ComfyUI-TripleKSampler.git" "ComfyUI-TripleKSampler"
+git_get_nodes "https://github.com/kijai/ComfyUI-WanVideoWrapper" "ComfyUI-WanVideoWrapper"
+git_get_nodes "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite" "ComfyUI-VideoHelperSuite"
+
+
+
+
+get_models(){
+    local URL=$2
+    local downloaddir=$1
+
+
+    wget -q --show-progress --progress=dot:giga -nc -P ./$downloaddir $URL 
+}
+
+echo Setting Current dir to models folder
+cd $rootModels
+
+# Wan2.2 I2V
+get_models "diffusion_models/WAN2.2" "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_i2v_high_noise_14B_fp8_scaled.safetensors" 
+get_models "diffusion_models/WAN2.2" "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_i2v_low_noise_14B_fp8_scaled.safetensors"
+get_models "text_encoders" https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors
+get_models "vae" https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors
+get_models "loras/WAN2.2" "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors"
+get_models "loras/WAN2.2" "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors"
+
+
+
 
 
 cd $rootComfyUI
