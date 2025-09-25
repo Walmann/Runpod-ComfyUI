@@ -44,10 +44,10 @@ fi
 
 
 
-printf "Installing ComfyUI\n"
-printf "ComfyUI: Cloning\n"
+echo "Installing ComfyUI"
+echo "ComfyUI: Cloning"
 
-printf "Checking if $rootComfyUI exists.\n"
+echo "Checking if $rootComfyUI exists."
 
 if [ -d "$rootComfyUI" ]; then
     echo "Repo already exists, updating..."
@@ -56,10 +56,7 @@ if [ -d "$rootComfyUI" ]; then
     cd $rootWorkspace
 else
     cd $rootWorkspace
-    echo "Repo not found"
-    echo "List of files in $rootComfyUI folder: "
-    ls -la $rootComfyUI
-    echo "Cloning: "
+    echo "ComfyUI not found. Downloading. "
     git clone https://github.com/comfyanonymous/ComfyUI ComfyUI
 fi
 
@@ -71,12 +68,11 @@ pip install \
     huggingface_hub \
     huggingface_hub[cli] \
     onnxruntime-gpu \
+    onnx \
     sageattention
 
 
 
-# git clone --progress "https://github.com/comfyanonymous/ComfyUI"     
-echo "ComfyUI: Entering Dir"
 cd $rootComfyUI
 echo "ComfyUI: Installing requirements"
 pip install -r requirements.txt   | grep -v 'already satisfied'
@@ -92,9 +88,8 @@ git_get_nodes(){
         cd "$folderName"
         git pull
     else
-        echo "Node not found"
+        echo "$folderName not found, installing now."
         # echo "List of files in $ folder: "
-        echo "Cloning: "
         git clone "$1" "$folderName"
     fi
 
@@ -108,17 +103,6 @@ git_get_nodes(){
 
 # Installing ComfyUI Manager:
 git_get_nodes "https://github.com/ltdrdata/ComfyUI-Manager" "comfyui-manager"
-# cd $rootCustomNodes
-# git clone https://github.com/ltdrdata/ComfyUI-Manager comfyui-manager
-# pip install -r requirements.txt
-
-
-# Installing Lora manager:
-# git_get_nodes "https://github.com/willmiao/ComfyUI-Lora-Manager.git" "ComfyUI-Lora-Manager"
-# cd $rootCustomNodes
-# git clone https://github.com/willmiao/ComfyUI-Lora-Manager.git
-# cd ComfyUI-Lora-Manager
-# pip install -r requirements.txt
 
 # Install model manager.
 git_get_nodes "https://github.com/hayden-fr/ComfyUI-Model-Manager.git" "ComfyUI-Model-Manager"
