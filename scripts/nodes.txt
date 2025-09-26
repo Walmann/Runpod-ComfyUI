@@ -1,0 +1,20 @@
+# Installing ComfyUI Manager:
+"https://github.com/ltdrdata/ComfyUI-Manager" "comfyui-manager"
+
+# Install model manager.
+"https://github.com/hayden-fr/ComfyUI-Model-Manager.git" "ComfyUI-Model-Manager"
+
+
+"https://github.com/VraethrDalkr/ComfyUI-TripleKSampler.git" "ComfyUI-TripleKSampler"
+"https://github.com/kijai/ComfyUI-WanVideoWrapper" "ComfyUI-WanVideoWrapper"
+"https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite" "ComfyUI-VideoHelperSuite"
+"https://github.com/rgthree/rgthree-comfy.git" "ComfyUI-VideoHelperSuite"
+
+# IMPACK Pack
+"https://github.com/ltdrdata/ComfyUI-Impact-Pack" "comfyui-impact-pack"
+"https://github.com/ltdrdata/ComfyUI-Impact-Subpack" "rgthree-comfy"
+
+# Wan2.2 Animate
+"https://github.com/Fannovel16/comfyui_controlnet_aux/" "comfyui_controlnet_aux"
+"https://github.com/kijai/ComfyUI-KJNodes" "ComfyUI-KJNodes"
+"https://github.com/kijai/ComfyUI-segment-anything-2" "ComfyUI-segment-anything-2"
