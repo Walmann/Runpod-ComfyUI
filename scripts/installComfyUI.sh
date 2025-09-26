@@ -173,9 +173,17 @@ download_models(){
         # Hent filnavn fra url
         filename=$(basename "$url")
 
-        # Last ned filen
-        echo "Laster ned: $url -> $dir/$filename"
-        curl -L --progress-bar "$url" -o "$dir/$filename"
+        if [ -e "$filename" ]; then
+            echo 'File already exists' >&2
+            exit 1
+        else
+            # Last ned filen
+            echo "Laster ned: $url -> $dir/$filename"
+            curl -L -C - --progress-bar "$url" -o "$dir/$filename"
+        fi
+
+
+
     done < "$tmp_list"
 
     # Fjern midlertidig listefil

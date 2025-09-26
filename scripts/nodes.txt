@@ -7,7 +7,7 @@
 
 # IMPACK Pack
 "https://github.com/ltdrdata/ComfyUI-Impact-Pack" "comfyui-impact-pack"
-"https://github.com/ltdrdata/ComfyUI-Impact-Subpack" "rgthree-comfy"
+"https://github.com/ltdrdata/ComfyUI-Impact-Subpack" "ComfyUI-Impact-Subpack"
 
 # Wan2.2 Animate
 "https://github.com/Fannovel16/comfyui_controlnet_aux/" "comfyui_controlnet_aux"
@@ -19,4 +19,6 @@
 "https://github.com/VraethrDalkr/ComfyUI-TripleKSampler.git" "ComfyUI-TripleKSampler"
 "https://github.com/kijai/ComfyUI-WanVideoWrapper" "ComfyUI-WanVideoWrapper"
 "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite" "ComfyUI-VideoHelperSuite"
-"https://github.com/rgthree/rgthree-comfy.git" "ComfyUI-VideoHelperSuite"
+"https://github.com/rgthree/rgthree-comfy.git" "rgthree-comfy"
+#"https://github.com/quasiblob/ComfyUI-EsesImageCompare" "ComfyUI-EsesImageCompare"
+"https://github.com/rakki194/ComfyUI-ImageCompare.git" "ComfyUI-ImageCompare"

@@ -24,4 +24,5 @@
 
 
 # ReActor
+"reswapper" "https://huggingface.co/datasets/Gourieff/ReActor/resolve/main/models/reswapper_256.onnx"
 "insightface" "https://huggingface.co/datasets/Gourieff/ReActor/resolve/main/models/reswapper_256.onnx"
