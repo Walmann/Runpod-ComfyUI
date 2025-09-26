@@ -21,3 +21,7 @@
 "vae" "https://huggingface.co/Comfy-Org/Qwen-Image_ComfyUI/resolve/main/split_files/vae/qwen_image_vae.safetensors"
 "loras/qwen2509" "https://huggingface.co/lightx2v/Qwen-Image-Lightning/resolve/main/Qwen-Image-Lightning-4steps-V1.0.safetensors"
 "loras/qwen2509" "https://huggingface.co/Danrisi/Lenovo_Qwen/resolve/main/lenovo.safetensors"
+
+
+# ReActor
+"insightface" "https://huggingface.co/datasets/Gourieff/ReActor/resolve/main/models/reswapper_256.onnx"
