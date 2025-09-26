@@ -45,8 +45,6 @@ fi
 
 
 echo "Installing ComfyUI"
-echo "ComfyUI: Cloning"
-
 echo "Checking if $rootComfyUI exists."
 
 if [ -d "$rootComfyUI" ]; then
@@ -59,6 +57,7 @@ else
     echo "ComfyUI not found. Downloading. "
     git clone https://github.com/comfyanonymous/ComfyUI ComfyUI
 fi
+
 
 
 install_pip_packages(){
@@ -78,34 +77,60 @@ pip install \
 
 
 
-cd $rootComfyUI
-echo "ComfyUI: Installing requirements"
-pip install -r requirements.txt   | grep -v 'already satisfied'
-
 
 git_get_nodes(){
-    local repo_url="$1"
-    local folderName="$2"
+    local list_url="$1"
+    local tmp_nodelist="/tmp/node_list.txt"
+
+    # Download Node list
+    echo "Downloading nodes list from: $list_url"
+    curl -L --progress-bar "$list_url" -o "$tmp_nodelist"
+    if [[ $? -ne 0 ]]; then
+        echo "Could not download list."
+        return 1
+    fi
+
+
 
     cd "$rootCustomNodes" || exit 1
 
-    if [ -d "$folderName/.git" ]; then
-        echo "[$folderName] already exists, updating..."
-        cd "$folderName" || exit 1
-        git pull
-    else
-        echo "[$folderName] not found, cloning now..."
-        git clone "$repo_url" "$folderName"
-        cd "$folderName" || exit 1
-    fi
+    # Gå gjennom hver linje i lista
+    while IFS= read -r line; do
 
-    # Installer dependencies hvis requirements.txt finnes
-    if [ -f "requirements.txt" ]; then
-        echo "Installing dependencies for $folderName"
-        pip install -r requirements.txt | grep -v 'already satisfied'
-    else
-        echo "No requirements.txt found for $folderName, skipping."
-    fi
+        # Skip empty lines and comments
+        [[ -z "$line" || "$line" =~ ^# ]] && continue
+
+        eval set -- $line
+        repo_url=$1
+        folderName=$2
+
+        repo_url="${repo_url%\"}"
+        repo_url="${repo_url#\"}"
+        folderName="${folderName%\"}"
+        folderName="${folderName#\"}"
+
+        # # Sjekk om URLen er et git-repo eller en vanlig fil
+        # if [[ "$repo_url" =~ \.git$ ]]; then
+        # Git repository
+        if [ -d "$folderName" ]; then
+            echo "[$folderName] already exists, updating..."
+            cd "$folderName" || exit 1
+            git pull
+        else
+            echo "[$folderName] not found, cloning now..."
+            git clone "$repo_url" "$folderName"
+            cd "$folderName" || exit 1
+        fi
+
+        # Installer dependencies hvis requirements.txt finnes
+        if [ -f "requirements.txt" ]; then
+            echo "Installing dependencies for $folderName"
+            pip install -r requirements.txt | grep -v 'already satisfied'
+        else
+            echo "No requirements.txt found for $folderName, skipping."
+        fi
+        # fi
+    done < "$tmp_nodelist"
 
     cd "$rootComfyUI" || exit 1
 }
@@ -114,13 +139,18 @@ git_get_nodes(){
 
 
 download_models(){
-local list_file="$1"
+    local list_url="$1"
+    local tmp_list="/tmp/models_list.txt"
 
-    if [[ ! -f "$list_file" ]]; then
-        echo "Finner ikke fil: $list_file"
+    # Last ned lista
+    echo "Laster ned listefil fra: $list_url"
+    curl -L --progress-bar "$list_url" -o "$tmp_list"
+    if [[ $? -ne 0 ]]; then
+        echo "Kunne ikke laste ned listefilen."
         return 1
     fi
 
+    # Gå gjennom hver linje i lista
     while IFS= read -r line; do
         # Hopp over tomme linjer og kommentarer
         [[ -z "$line" || "$line" =~ ^# ]] && continue
@@ -144,26 +174,34 @@ local list_file="$1"
 
         # Last ned filen
         echo "Laster ned: $url -> $dir/$filename"
-        # curl -L --progress-bar "$url" -o "$dir/$filename"
-    done < "$list_file"
+        curl -L --progress-bar "$url" -o "$dir/$filename"
+    done < "$tmp_list"
+
+    # Fjern midlertidig listefil
+    rm -f "$tmp_list"
 }
+
+cd $rootComfyUI
+echo "ComfyUI: Installing requirements"
+pip install -r requirements.txt   | grep -v 'already satisfied'
+
 # Install pip packages. Placed into function for faster debugging.
 install_pip_packages()
 
 
 # Download and install nodes
 echo "Download and install nodes"
-git_get_nodes("https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/nodes.txt")
+cd "$rootCustomNodes"
+git_get_nodes "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/nodes.txt"
 
 # Download models
 echo "Downloading models"
 cd $rootModels
-download_models("https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/models.txt")
+download_models "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/models.txt"
 
-cd $rootComfyUI
 printf "ComfyUI: Staring ComfyUI"
+cd $rootComfyUI
 python3 main.py --listen 0.0.0.0 --port 3001
 
 printf "Application ready!"
-# git clone https://github.com/comfyanonymous/ComfyUI.git
 sleep infinity
