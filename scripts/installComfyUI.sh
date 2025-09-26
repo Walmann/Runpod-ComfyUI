@@ -79,86 +79,78 @@ pip install -r requirements.txt   | grep -v 'already satisfied'
 
 
 git_get_nodes(){
+    local repo_url="$1"
     local folderName="$2"
 
-    cd $rootCustomNodes
-    # TODO Make it check for Custom
-    if [ -d "$folderName" ]; then
-        echo "Node already exists, updating..."
-        cd "$folderName"
+    cd "$rootCustomNodes" || exit 1
+
+    if [ -d "$folderName/.git" ]; then
+        echo "[$folderName] already exists, updating..."
+        cd "$folderName" || exit 1
         git pull
     else
-        echo "$folderName not found, installing now."
-        # echo "List of files in $ folder: "
-        git clone "$1" "$folderName"
+        echo "[$folderName] not found, cloning now..."
+        git clone "$repo_url" "$folderName"
+        cd "$folderName" || exit 1
     fi
 
-    echo Installing dependencies for "$folderName"
+    # Installer dependencies hvis requirements.txt finnes
+    if [ -f "requirements.txt" ]; then
+        echo "Installing dependencies for $folderName"
+        pip install -r requirements.txt | grep -v 'already satisfied'
+    else
+        echo "No requirements.txt found for $folderName, skipping."
+    fi
 
-    cd "$rootCustomNodes/$folderName"
-    pip install -r requirements.txt  | grep -v 'already satisfied'
-    cd $rootComfyUI
+    cd "$rootComfyUI" || exit 1
 }
 
 
-# Installing ComfyUI Manager:
-git_get_nodes "https://github.com/ltdrdata/ComfyUI-Manager" "comfyui-manager"
-
-# Install model manager.
-git_get_nodes "https://github.com/hayden-fr/ComfyUI-Model-Manager.git" "ComfyUI-Model-Manager"
 
 
-git_get_nodes "https://github.com/VraethrDalkr/ComfyUI-TripleKSampler.git" "ComfyUI-TripleKSampler"
-git_get_nodes "https://github.com/kijai/ComfyUI-WanVideoWrapper" "ComfyUI-WanVideoWrapper"
-git_get_nodes "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite" "ComfyUI-VideoHelperSuite"
-git_get_nodes "https://github.com/rgthree/rgthree-comfy.git" "ComfyUI-VideoHelperSuite"
+download_models(){
+local list_file="$1"
 
-# IMPACK Pack
-git_get_nodes "https://github.com/ltdrdata/ComfyUI-Impact-Pack" "comfyui-impact-pack"
-git_get_nodes "https://github.com/ltdrdata/ComfyUI-Impact-Subpack" "rgthree-comfy"
+    if [[ ! -f "$list_file" ]]; then
+        echo "Finner ikke fil: $list_file"
+        return 1
+    fi
 
-# Wan2.2 Animate
-git_get_nodes "https://github.com/Fannovel16/comfyui_controlnet_aux/" "comfyui_controlnet_aux"
-git_get_nodes "https://github.com/kijai/ComfyUI-KJNodes" "ComfyUI-KJNodes"
-git_get_nodes "https://github.com/kijai/ComfyUI-segment-anything-2" "ComfyUI-segment-anything-2"
+    while IFS= read -r line; do
+        # Hopp over tomme linjer og kommentarer
+        [[ -z "$line" || "$line" =~ ^# ]] && continue
 
+        # Evaluer linja slik at anførselstegn håndteres
+        eval set -- $line
+        dir=$1
+        url=$2
 
-get_models(){
-    local URL=$2
-    local downloaddir=$1
+        # Fjern eventuelle anførselstegn
+        dir="${dir%\"}"
+        dir="${dir#\"}"
+        url="${url%\"}"
+        url="${url#\"}"
 
+        # Opprett mappen
+        mkdir -p "$dir"
 
-    wget -q --show-progress --progress=dot:giga -nc -P ./$downloaddir $URL 
+        # Hent filnavn fra url
+        filename=$(basename "$url")
+
+        # Last ned filen
+        echo "Laster ned: $url -> $dir/$filename"
+        # curl -L --progress-bar "$url" -o "$dir/$filename"
+    done < "$list_file"
 }
 
-echo Setting Current dir to models folder
+# Download and install nodes
+echo "Download and install nodes"
+git_get_nodes("https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/nodes.txt")
+
+# Download models
+echo "Downloading models"
 cd $rootModels
-
-# Wan2.2 I2V
-get_models "diffusion_models/WAN2.2" "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_i2v_high_noise_14B_fp8_scaled.safetensors" 
-get_models "diffusion_models/WAN2.2" "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_i2v_low_noise_14B_fp8_scaled.safetensors"
-get_models "text_encoders" https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors
-get_models "vae" https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors
-get_models "loras/WAN2.2" "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors"
-get_models "loras/WAN2.2" "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors"
-
-# WAN2.2 Animate
-get_models "diffusion_models/WAN2.2Animate" "https://huggingface.co/Kijai/WanVideo_comfy_fp8_scaled/resolve/main/Wan22Animate/Wan2_2-Animate-14B_fp8_e4m3fn_scaled_KJ.safetensors"
-get_models "loras/WAN2.2Animate" "https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/Lightx2v/lightx2v_I2V_14B_480p_cfg_step_distill_rank64_bf16.safetensors"
-get_models "loras/WAN2.2Animate" "https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/WanAnimate_relight_lora_fp16.safetensors"
-get_models "clip_vision/WAN2.2Animate" "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/clip_vision/clip_vision_h.safetensors"
-
-# Wan2.2 Animate GGUF
-get_models "unet/WAN2.2Animate" "https://huggingface.co/QuantStack/Wan2.2-Animate-14B-GGUF/resolve/main/Wan2.2-Animate-14B-Q8_0.gguf"
-
-# Qwen 2509
-get_models "diffusion_models/qwen2509" "https://huggingface.co/Comfy-Org/Qwen-Image-Edit_ComfyUI/resolve/main/split_files/diffusion_models/qwen_image_edit_2509_fp8_e4m3fn.safetensors"
-get_models "text_encoders" "https://huggingface.co/Comfy-Org/Qwen-Image_ComfyUI/resolve/main/split_files/text_encoders/qwen_2.5_vl_7b_fp8_scaled.safetensors"
-get_models "vae" "https://huggingface.co/Comfy-Org/Qwen-Image_ComfyUI/resolve/main/split_files/vae/qwen_image_vae.safetensors"
-get_models "loras/qwen2509" "https://huggingface.co/lightx2v/Qwen-Image-Lightning/resolve/main/Qwen-Image-Lightning-4steps-V1.0.safetensors"
-
-
-
+download_models("https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/models.txt")
 
 cd $rootComfyUI
 printf "ComfyUI: Staring ComfyUI"
