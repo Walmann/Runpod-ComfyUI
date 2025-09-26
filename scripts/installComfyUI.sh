@@ -111,7 +111,11 @@ git_get_nodes "https://github.com/hayden-fr/ComfyUI-Model-Manager.git" "ComfyUI-
 git_get_nodes "https://github.com/VraethrDalkr/ComfyUI-TripleKSampler.git" "ComfyUI-TripleKSampler"
 git_get_nodes "https://github.com/kijai/ComfyUI-WanVideoWrapper" "ComfyUI-WanVideoWrapper"
 git_get_nodes "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite" "ComfyUI-VideoHelperSuite"
+git_get_nodes "https://github.com/rgthree/rgthree-comfy.git" "ComfyUI-VideoHelperSuite"
 
+# IMPACK Pack
+git_get_nodes "https://github.com/ltdrdata/ComfyUI-Impact-Pack" "comfyui-impact-pack"
+git_get_nodes "https://github.com/ltdrdata/ComfyUI-Impact-Subpack" "rgthree-comfy"
 
 # Wan2.2 Animate
 git_get_nodes "https://github.com/Fannovel16/comfyui_controlnet_aux/" "comfyui_controlnet_aux"
