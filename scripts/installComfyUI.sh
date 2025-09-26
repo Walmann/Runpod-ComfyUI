@@ -60,7 +60,10 @@ else
     git clone https://github.com/comfyanonymous/ComfyUI ComfyUI
 fi
 
+
+install_pip_packages(){
 # Install some known missing packages: 
+echo "Installing pip packages: "
 pip install \
     opencv-python \
     requests \
@@ -69,7 +72,9 @@ pip install \
     huggingface_hub[cli] \
     onnxruntime-gpu \
     onnx \
-    sageattention
+    sageattention \
+    | grep -v 'already satisfied'
+}
 
 
 
@@ -142,6 +147,9 @@ local list_file="$1"
         # curl -L --progress-bar "$url" -o "$dir/$filename"
     done < "$list_file"
 }
+# Install pip packages. Placed into function for faster debugging.
+install_pip_packages()
+
 
 # Download and install nodes
 echo "Download and install nodes"
