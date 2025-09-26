@@ -91,12 +91,13 @@ git_get_nodes(){
     fi
 
 
-
     cd "$rootCustomNodes" || exit 1
+
 
     # Gå gjennom hver linje i lista
     while IFS= read -r line; do
 
+        cd "$rootCustomNodes" || exit 1
         # Skip empty lines and comments
         [[ -z "$line" || "$line" =~ ^# ]] && continue
 
@@ -186,7 +187,7 @@ echo "ComfyUI: Installing requirements"
 pip install -r requirements.txt   | grep -v 'already satisfied'
 
 # Install pip packages. Placed into function for faster debugging.
-install_pip_packages()
+install_pip_packages
 
 
 # Download and install nodes
