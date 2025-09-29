@@ -22,6 +22,7 @@ RUN apt update && \
   ffmpeg\
   pkg-config \
   git && \
+  byobu && \
   apt-get autoremove -y && \
   rm -rf /var/lib/apt/lists/* && \
   apt-get clean -y
