@@ -114,23 +114,24 @@ git_get_nodes(){
         # if [[ "$repo_url" =~ \.git$ ]]; then
         # Git repository
         if [ -d "$folderName" ]; then
-            echo "[$folderName] already exists, updating..."
-            cd "$folderName" || exit 1
-            git pull
+            echo "[$folderName] already exists, Skipping."
+            # cd "$folderName" || exit 1
+            # git pull
         else
             echo "[$folderName] not found, cloning now..."
             git clone "$repo_url" "$folderName"
             cd "$folderName" || exit 1
+
+            # Installer dependencies hvis requirements.txt finnes
+            if [ -f "requirements.txt" ]; then
+                echo "Installing dependencies for $folderName"
+                pip install -r requirements.txt | grep -v 'already satisfied'
+            else
+                echo "No requirements.txt found for $folderName, skipping."
+            fi
         fi
 
-        # Installer dependencies hvis requirements.txt finnes
-        if [ -f "requirements.txt" ]; then
-            echo "Installing dependencies for $folderName"
-            pip install -r requirements.txt | grep -v 'already satisfied'
-        else
-            echo "No requirements.txt found for $folderName, skipping."
-        fi
-        # fi
+
     done < "$tmp_nodelist"
 
     cd "$rootComfyUI" || exit 1
