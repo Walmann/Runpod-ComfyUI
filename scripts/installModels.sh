@@ -2,12 +2,8 @@
 
 
 download_models(){
-        echo "Variables: 1: $1 | 2: $2"
-        
         dir=$1
         url=$2
-        echo "Variables: dir = $dir | url= $url | 1: $1 | 2: $2"
-        
 
         # Fjern eventuelle anførselstegn
         dir="${dir%\"}"
