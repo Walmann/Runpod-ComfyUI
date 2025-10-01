@@ -160,6 +160,3 @@ printf "To install models, open a WebTerminal and run installModels.sh (Found in
 printf "ComfyUI: Staring ComfyUI"
 cd $rootComfyUI
 python3 main.py --listen 0.0.0.0 --port 3001
-
-printf "Application ready!"
-sleep infinity
