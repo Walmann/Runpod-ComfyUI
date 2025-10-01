@@ -140,56 +140,6 @@ git_get_nodes(){
 
 
 
-download_models(){
-    local list_url="$1"
-    local tmp_list="/tmp/models_list.txt"
-
-    # Last ned lista
-    echo "Laster ned listefil fra: $list_url"
-    curl -L --progress-bar "$list_url" -o "$tmp_list"
-    if [[ $? -ne 0 ]]; then
-        echo "Kunne ikke laste ned listefilen."
-        return 1
-    fi
-
-    # Gå gjennom hver linje i lista
-    while IFS= read -r line; do
-        # Hopp over tomme linjer og kommentarer
-        [[ -z "$line" || "$line" =~ ^# ]] && continue
-
-        # Evaluer linja slik at anførselstegn håndteres
-        eval set -- $line
-        dir=$1
-        url=$2
-
-        # Fjern eventuelle anførselstegn
-        dir="${dir%\"}"
-        dir="${dir#\"}"
-        url="${url%\"}"
-        url="${url#\"}"
-
-        # Opprett mappen
-        mkdir -p "$dir"
-
-        # Hent filnavn fra url
-        filename=$(basename "$url")
-
-        if [ -e "$filename" ]; then
-            echo 'File already exists' >&2
-            exit 1
-        else
-            # Last ned filen
-            echo "Laster ned: $url -> $dir/$filename"
-            curl -L -C - --progress-bar "$url" -o "$dir/$filename"
-        fi
-
-
-
-    done < "$tmp_list"
-
-    # Fjern midlertidig listefil
-    rm -f "$tmp_list"
-}
 
 cd $rootComfyUI
 echo "ComfyUI: Installing requirements"
@@ -204,10 +154,8 @@ echo "Download and install nodes"
 cd "$rootCustomNodes"
 git_get_nodes "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/nodes.txt"
 
-# Download models
-echo "Downloading models"
-cd $rootModels
-download_models "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/models.txt"
+
+printf "To install models, open a WebTerminal and run installModels.sh (Found in root directory)"
 
 printf "ComfyUI: Staring ComfyUI"
 cd $rootComfyUI
