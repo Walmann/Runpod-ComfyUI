@@ -8,9 +8,6 @@ rootCustomNodes="/workspace/ComfyUI/custom_nodes"
 cd $rootWorkspace
 
 
-
-
-
 # printf "Starting CopyParty!"
 # tmux new-session -d -s copyparty 'curl -LsSf https://astral.sh/uv/install.sh | sh && source $HOME/.local/bin/env && uv tool run copyparty -p 3923 --allow-csrf' 
 
@@ -43,7 +40,6 @@ else
 fi
 
 
-
 echo "Installing ComfyUI"
 echo "Checking if $rootComfyUI exists."
 
@@ -58,24 +54,20 @@ else
     git clone https://github.com/comfyanonymous/ComfyUI ComfyUI
 fi
 
-
-
 install_pip_packages(){
-# Install some known missing packages: 
-echo "Installing pip packages: "
-pip install \
-    opencv-python \
-    requests \
-    runpod==1.7.7 \
-    huggingface_hub \
-    huggingface_hub[cli] \
-    onnxruntime-gpu \
-    onnx \
-    sageattention \
-    | grep -v 'already satisfied'
+    # Install some known missing packages: 
+    echo "Installing pip packages: "
+    pip install \
+        opencv-python \
+        requests \
+        runpod==1.7.7 \
+        huggingface_hub \
+        huggingface_hub[cli] \
+        onnxruntime-gpu \
+        onnx \
+        sageattention \
+        | grep -v 'already satisfied'
 }
-
-
 
 
 git_get_nodes(){
@@ -140,22 +132,31 @@ git_get_nodes(){
 
 
 
-
 cd $rootComfyUI
 echo "ComfyUI: Installing requirements"
+echo "$PWD"
 pip install -r requirements.txt   | grep -v 'already satisfied'
+
 
 # Install pip packages. Placed into function for faster debugging.
 install_pip_packages
 
 
-# Download and install nodes
-echo "Download and install nodes"
-cd "$rootCustomNodes"
-git_get_nodes "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/nodes.txt"
+# # Download and install nodes
+# echo "Download and install nodes"
+# cd "$rootCustomNodes"
+# git_get_nodes "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/nodes.txt"
+
+# Download script for installing nodes and models. 
+# These are kept in github more rapid updating.
+
 
 
 printf "To install models, open a WebTerminal and run installModels.sh (Found in root directory)"
+
+printf "Running Node installer wizard"
+
+bash installNodes.sh
 
 printf "ComfyUI: Staring ComfyUI"
 cd $rootComfyUI

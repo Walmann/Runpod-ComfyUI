@@ -36,17 +36,17 @@ RUN echo "Installing CopyParty dependencies."
 # RUN	apt update
 # RUN apt-get install tmux -y
 
-COPY scripts/ .
+COPY . .
 RUN chmod +x ./installComfyUI.sh
 RUN chmod +x ./installCopyParty.sh
 
-RUN mkdir workspace
+RUN mkdir -p workspace
 
 
 # EXPOSE 8188
 
 
-RUN echo "$PWD"
+# RUN echo "$PWD"
 # ENTRYPOINT ["ls"]
 # ENTRYPOINT ["./installComfyUI.sh"]
 CMD ["supervisord","-c","./service_script.conf"]
