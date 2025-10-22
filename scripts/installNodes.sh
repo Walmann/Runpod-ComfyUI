@@ -105,7 +105,7 @@ menu_function() {
 
 
 while true; do
-    if [["$1" == "default"] ]; then
+    if ["$1" == "default"]; then
         echo "Installing default nodes."
         install_my_default_nodes
         break 2
