@@ -1,18 +1,21 @@
 #!/bin/bash
 
 install_general_node(){
-    folderName=$2
     repo_url=$1
+    folderName=$2
+    
     git clone "$repo_url" "$folderName"
-        cd "$folderName" || exit 1
+    
+    cd "$folderName" || exit 1
 
-        # Installer dependencies hvis requirements.txt finnes
-        if [ -f "requirements.txt" ]; then
-            echo "Installing dependencies for $folderName"
-            pip install -r requirements.txt | grep -v 'already satisfied'
-        else
-            echo "No requirements.txt found for $folderName, skipping."
-        fi
+    # Installer dependencies hvis requirements.txt finnes
+    if [ -f "requirements.txt" ]; then
+        echo "Installing dependencies for $folderName"
+        pip install -r requirements.txt | grep -v 'already satisfied'
+    else
+        echo "No requirements.txt found for $folderName, skipping."
+    fi
+    
     cd $cdCustomNodes
 }
 
