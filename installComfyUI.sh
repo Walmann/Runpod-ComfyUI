@@ -149,14 +149,17 @@ install_pip_packages
 
 # Download script for installing nodes and models. 
 # These are kept in github more rapid updating.
+# Models: 
+curl -L --progress-bar "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/installModels.sh" -o "installModels.sh" 
+# Nodes:
+curl -L --progress-bar "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/installNodes.sh" -o "installNodes.sh" 
 
 
-
-printf "To install models, open a WebTerminal and run installModels.sh (Found in root directory)"
 
 printf "Running Node installer wizard"
-
 bash installNodes.sh
+
+printf "To install models, open a WebTerminal and run installModels.sh (Found in root directory)"
 
 printf "ComfyUI: Staring ComfyUI"
 cd $rootComfyUI
