@@ -1,8 +1,8 @@
 #!/bin/bash
 
 install_general_node(){
-    repo_url=$2
-    folderName=$1
+    folderName=$2
+    repo_url=$1
     git clone "$repo_url" "$folderName"
         cd "$folderName" || exit 1
 
