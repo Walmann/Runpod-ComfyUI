@@ -86,7 +86,7 @@ menu_function() {
     case $choice in
         1)
             echo            "Installing my default nodes"
-            install_my_default_node
+            install_my_default_nodes
             ;;
         2)
             echo            "Installing MagicNodes"
@@ -105,5 +105,11 @@ menu_function() {
 
 
 while true; do
+    if [[$1 == "default"] ]; then
+        echo "Installing default nodes."
+        install_my_default_nodes
+        break
+    else
     menu_function
+    fi
 done
