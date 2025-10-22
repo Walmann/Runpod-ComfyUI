@@ -108,7 +108,7 @@ while true; do
     if [[$1 == "default"] ]; then
         echo "Installing default nodes."
         install_my_default_nodes
-        break
+        break 2
     else
     menu_function
     fi
