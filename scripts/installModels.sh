@@ -78,7 +78,6 @@ menu_function() {
             download_models "loras/qwen2509" "https://huggingface.co/lightx2v/Qwen-Image-Lightning/resolve/main/Qwen-Image-Edit-Lightning-4steps-V1.0.safetensors"
             download_models "loras/qwen2509" "https://huggingface.co/Danrisi/Lenovo_Qwen/resolve/main/lenovo.safetensors"
             download_models "loras/qwen2509" "https://huggingface.co/lovis93/next-scene-qwen-image-lora-2509/resolve/main/next-scene_lora_v1-3000.safetensors"
-
             ;;
         # 4)
         #     echo            "Downloading Qwen_image_edit"
@@ -87,8 +86,7 @@ menu_function() {
         #     download_models "vae" "https://huggingface.co/Comfy-Org/Qwen-Image_ComfyUI/resolve/main/split_files/vae/qwen_image_vae.safetensors"
         #     download_models "loras/qwen2509" "https://huggingface.co/lightx2v/Qwen-Image-Lightning/resolve/main/Qwen-Image-Lightning-4steps-V1.0.safetensors"
         #     download_models "loras/qwen2509" "https://huggingface.co/Danrisi/Lenovo_Qwen/resolve/main/lenovo.safetensors"
-
-            ;;
+            # ;;
         5)
             echo            "Downloading ReActor models"
             download_models "reswapper" "https://huggingface.co/datasets/Gourieff/ReActor/resolve/main/models/reswapper_256.onnx"
