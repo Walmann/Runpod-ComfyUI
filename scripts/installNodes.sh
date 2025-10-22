@@ -87,12 +87,15 @@ menu_function() {
         1)
             echo            "Installing my default nodes"
             install_my_default_node
+            ;;
         2)
             echo            "Installing MagicNodes"
             install_magicNodes
+            ;;
         3)
             echo            "Installing Wan 2.2 Animate nodes"
             install_wan_animate_nodes
+            ;;
         *)
             echo "Ugyldig valg"
             ;;

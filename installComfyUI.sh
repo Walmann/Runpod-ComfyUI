@@ -134,7 +134,6 @@ git_get_nodes(){
 
 cd $rootComfyUI
 echo "ComfyUI: Installing requirements"
-echo "$PWD"
 pip install -r requirements.txt   | grep -v 'already satisfied'
 
 
@@ -150,9 +149,9 @@ install_pip_packages
 # Download script for installing nodes and models. 
 # These are kept in github more rapid updating.
 # Models: 
-curl -L --progress-bar "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/installModels.sh" -o "installModels.sh" 
+curl -L --progress-bar "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/installModels.sh" -o "/installModels.sh" 
 # Nodes:
-curl -L --progress-bar "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/installNodes.sh" -o "installNodes.sh" 
+curl -L --progress-bar "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/installNodes.sh" -o "/installNodes.sh" 
 
 
 
