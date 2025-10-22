@@ -154,7 +154,7 @@ cd /
 echo "Downloading Node installer wizard"
 curl -L --progress-bar "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/installNodes.sh" -o "/installNodes.sh" 
 echo "Installing default nodes"
-bash installNodes.sh default
+bash installNodes.sh "default"
 
 # Models: 
 curl -L --progress-bar "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/installModels.sh" -o "/installModels.sh" 
