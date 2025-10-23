@@ -129,6 +129,30 @@ git_get_nodes(){
     cd "$rootComfyUI" || exit 1
 }
 
+border()
+{
+    # Creates a border around text
+    title="| $1 |"
+    edge=$(echo "$title" | sed 's/./-/g')
+    echo "$edge"
+    echo "$title"
+    echo "$edge"
+}
+
+
+
+# The download is above installing Comfy requirements so you can start downloading models before waiting for requirements to install
+# Nodes:
+border "Downloading Models and Node installer wizard"
+curl -L --progress-bar "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/installNodes.sh" -o "/installNodes.sh" 
+# Models: 
+curl -L --progress-bar "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/installModels.sh" -o "/installModels.sh" 
+
+
+
+
+
+
 
 
 
@@ -150,19 +174,11 @@ install_pip_packages
 # These are kept in github more rapid updating.
 cd /
 
-# Nodes:
-echo "Downloading Node installer wizard"
-curl -L --progress-bar "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/installNodes.sh" -o "/installNodes.sh" 
+
 echo "Installing default nodes"
 bash installNodes.sh "default"
 
-# Models: 
-curl -L --progress-bar "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/installModels.sh" -o "/installModels.sh" 
-printf "To install models, open a WebTerminal and run installModels.sh (Found in root directory)"
-printf "To install additional Nodes, open a WebTerminal and run installNodes.sh (Found in root directory)"
-
-
-
+border "To install models, open a WebTerminal and run installModels.sh (Found in root directory)\nTo install additional Nodes, open a WebTerminal and run installNodes.sh (Found in root directory)"
 
 printf "ComfyUI: Staring ComfyUI"
 cd $rootComfyUI
