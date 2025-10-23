@@ -50,7 +50,6 @@ else
     printf "Created Venv. Location: "
     which python
     python3 -V
-
 fi
 
 

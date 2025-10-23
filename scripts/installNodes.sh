@@ -57,8 +57,15 @@ install_magicNodes(){
     # Extra steps
     # Install negative lora
     mv "$folderName/models/LoRA/mg_7lambda_negative.safetensors" "../models/loras/magicNodes/"
-
+    download_model "$cdModels/loras/" "https://huggingface.co/DD32/mg_7lambda_negative/resolve/main/mg_7lambda_negative.safetensors"
     download_model "$cdCustomNodes/$folderName/depth-anything/" "https://huggingface.co/depth-anything/Depth-Anything-V2-Large/resolve/main/depth_anything_v2_vitl.pth"
+    download_model "$cdModels/clip_vision/" "https://huggingface.co/laion/CLIP-ViT-H-14-laion2B-s32B-b79K/resolve/main/open_clip_model.safetensors"
+    download_model "$cdModels/controlnet/" "https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/diffusers_xl_depth_full.safetensors"
+
+    # Install sageAttention
+    pip install git+https://github.com/thu-ml/SageAttention
+    
+    cd $cdCustomNodes
 }
 
 install_wan_animate_nodes(){
@@ -68,41 +75,69 @@ install_wan_animate_nodes(){
 
 }
 
+install_JoyCaptions(){
+    cd $cdCustomNodes
+    
+    install_general_node "https://github.com/1038lab/ComfyUI-JoyCaption.git" "ComfyUI-JoyCaption"
+    
+    # Extra steps
+    # Install GGUF models
+    cd "ComfyUI-JoyCaption/"
+    python llama_cpp_install/llama_cpp_install.py
+    
+    cd $cdCustomNodes
+}
 
 # Download models
 # echo "Downloading models"
 cdCustomNodes="/workspace/ComfyUI/custom_nodes"
+cdModels="/workspace/ComfyUI/models"
 cd $cdCustomNodes
 # download_models "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/models.txt"
 
+# Make sure we are in python enviorment: 
+[[ "$VIRTUAL_ENV" == "" ]]; INVENV=$?
+if [[ INVENV -eq 1]];then
+    echo "Not in python Venv. Now enabling Venv."
+    source venv/bin/activate
+else
+    echo "Already in python Venv"
+fi
 
 menu_function() {
     echo "Choose model to download:"
     echo "1) My default nodes"
     echo "2) MagicNodes"
     echo "3) Wan 2.2 Animate nodes"
+    echo "4) JoyCaption"
 
 
 
-    read -p "Skriv inn nummer: " choice
+    read -p "Skriv inn nummer: " -a choices  # -a = les inn som array
 
-    case $choice in
-        1)
-            echo            "Installing my default nodes"
-            install_my_default_nodes
-            ;;
-        2)
-            echo            "Installing MagicNodes"
-            install_magicNodes
-            ;;
-        3)
-            echo            "Installing Wan 2.2 Animate nodes"
-            install_wan_animate_nodes
-            ;;
-        *)
-            echo "Ugyldig valg"
-            ;;
-    esac
+    for choice in "${choices[@]}"; do
+        case $choice in
+            1)
+                echo "Installing my default nodes"
+                install_my_default_nodes
+                ;;
+            2)
+                echo "Installing MagicNodes"
+                install_magicNodes
+                ;;
+            3)
+                echo "Installing Wan 2.2 Animate nodes"
+                install_wan_animate_nodes
+                ;;
+            4)
+                echo "Installing JoyCaption"
+                install_JoyCaptions
+                ;;
+            *)
+                echo "Ugyldig valg: $choice"
+                ;;
+        esac
+    done
 }
 
 

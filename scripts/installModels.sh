@@ -42,9 +42,11 @@ menu_function() {
     # echo "4) Qwen Image Edit"
     echo "5) ReActor Models"
     echo "6) Flux Kontext Dev"
-    echo "7) Upscale models"
-    echo "8) Impack Pack Models"
-    echo "9) Wan 2.2 14B T2V"
+    echo "7) Flux1 Dev (GGUF)"
+    echo "8) Upscale models"
+    echo "9) Impack Pack Models"
+    echo "10) Wan 2.2 14B T2V"
+    echo "11) SDXL Realviz"
 
 
     read -p "Skriv inn nummer: " choice
@@ -79,14 +81,6 @@ menu_function() {
             download_models "loras/qwen2509" "https://huggingface.co/Danrisi/Lenovo_Qwen/resolve/main/lenovo.safetensors"
             download_models "loras/qwen2509" "https://huggingface.co/lovis93/next-scene-qwen-image-lora-2509/resolve/main/next-scene_lora_v1-3000.safetensors"
             ;;
-        # 4)
-        #     echo            "Downloading Qwen_image_edit"
-        #     download_models "diffusion_models/qwen2509" "https://huggingface.co/Comfy-Org/Qwen-Image-Edit_ComfyUI/resolve/main/split_files/diffusion_models/qwen_image_edit_2509_fp8_e4m3fn.safetensors"
-        #     download_models "text_encoders" "https://huggingface.co/Comfy-Org/Qwen-Image_ComfyUI/resolve/main/split_files/text_encoders/qwen_2.5_vl_7b_fp8_scaled.safetensors"
-        #     download_models "vae" "https://huggingface.co/Comfy-Org/Qwen-Image_ComfyUI/resolve/main/split_files/vae/qwen_image_vae.safetensors"
-        #     download_models "loras/qwen2509" "https://huggingface.co/lightx2v/Qwen-Image-Lightning/resolve/main/Qwen-Image-Lightning-4steps-V1.0.safetensors"
-        #     download_models "loras/qwen2509" "https://huggingface.co/Danrisi/Lenovo_Qwen/resolve/main/lenovo.safetensors"
-            # ;;
         5)
             echo            "Downloading ReActor models"
             download_models "reswapper" "https://huggingface.co/datasets/Gourieff/ReActor/resolve/main/models/reswapper_256.onnx"
@@ -100,16 +94,26 @@ menu_function() {
             download_models "diffusion_models/FluxKontextDev" "https://huggingface.co/Comfy-Org/flux1-kontext-dev_ComfyUI/resolve/main/split_files/diffusion_models/flux1-dev-kontext_fp8_scaled.safetensors"
             ;;
         7)
+            echo            "Downloading Flux1 Dev (GGUF)"
+            download_models "unet/Flux1Dev" "https://huggingface.co/city96/FLUX.1-dev-gguf/resolve/main/flux1-dev-Q8_0.gguf"
+            download_models "text_encoders" "https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp8_e4m3fn_scaled.safetensors"
+            download_models "vae/flux" "https://huggingface.co/Comfy-Org/Lumina_Image_2.0_Repackaged/resolve/main/split_files/vae/ae.safetensors"
+            
+            ;;
+        8)
             echo            "Downloading Upscale Models"
             download_models "ESRGAN" "https://huggingface.co/FacehugmanIII/4x_foolhardy_Remacri/resolve/main/4x_foolhardy_Remacri.pth"
             
             ;;
-        8)
+        9)
             echo            "Downloading Impact-Pack"
             download_models "sams" "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth"
+            download_models "ultralytics/bbox" "https://huggingface.co/Bingsu/adetailer/resolve/main/face_yolov9c.pt"
+            download_models "ultralytics/bbox" "https://huggingface.co/Bingsu/adetailer/resolve/main/person_yolov8s-seg.pt"
+            download_models "ultralytics/bbox" "https://huggingface.co/Bingsu/adetailer/resolve/main/hand_yolov9c.pt"
             
             ;;
-        9)
+        10)
             echo            "Downloading Wan2.2 14B T2V"
             download_models "diffusion_models/WAN2.2" "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/blob/main/split_files/diffusion_models/wan2.2_t2v_high_noise_14B_fp8_scaled.safetensors"
             download_models "diffusion_models/WAN2.2" "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/blob/main/split_files/diffusion_models/wan2.2_t2v_low_noise_14B_fp8_scaled.safetensors"
@@ -117,6 +121,10 @@ menu_function() {
             download_models "vae" "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors"
             download_models "loras/WAN2.2" "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors"
             download_models "loras/WAN2.2" "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors"
+            ;;
+        11)
+            echo            "Downloading Wan2.2 14B T2V"
+            download_models "checkpoints/SDXL" "https://huggingface.co/SG161222/RealVisXL_V5.0/resolve/main/RealVisXL_V5.0_fp32.safetensors"
             ;;
         *)
             echo "Ugyldig valg"
