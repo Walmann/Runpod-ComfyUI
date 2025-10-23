@@ -52,7 +52,7 @@ install_magicNodes(){
     repo_url=$1
     folderName=$2
     
-    install_general_node "MagicNodes" "https://github.com/1dZb1/MagicNodes" 
+    install_general_node "https://github.com/1dZb1/MagicNodes" "MagicNodes"
     
     # Extra steps
     # Install negative lora
