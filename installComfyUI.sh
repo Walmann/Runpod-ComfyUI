@@ -1,6 +1,20 @@
 #!/usr/bin/env bash
 # set -e
 
+download_model_and_node_list(){
+    # Nodes:
+    border "Downloading Models and Node installer wizard"
+    curl -L --progress-bar "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/installNodes.sh" -o "/installNodes.sh" 
+    # Models: 
+    curl -L --progress-bar "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/installModels.sh" -o "/installModels.sh" 
+
+}
+
+if [ "$1" == "downloadOnly" ]; then
+    download_model_and_node_list
+    exit 1
+fi
+
 rootWorkspace="/workspace"
 rootComfyUI="/workspace/ComfyUI"
 rootModels="/workspace/ComfyUI/models"
@@ -142,12 +156,7 @@ border()
 
 
 # The download is above installing Comfy requirements so you can start downloading models before waiting for requirements to install
-# Nodes:
-border "Downloading Models and Node installer wizard"
-curl -L --progress-bar "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/installNodes.sh" -o "/installNodes.sh" 
-# Models: 
-curl -L --progress-bar "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/installModels.sh" -o "/installModels.sh" 
-
+download_model_and_node_list
 
 
 
