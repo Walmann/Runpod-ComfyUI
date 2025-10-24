@@ -51,7 +51,8 @@ menu_function() {
 
     read -p "Skriv inn nummer: " choice
 
-    case $choice in
+    for choice in "${choices[@]}"; do
+        case $choice in
         1)
             echo            "Downloading Wan2.2 14B I2V"
             download_models "diffusion_models/WAN2.2" "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_i2v_high_noise_14B_fp8_scaled.safetensors" 
@@ -129,7 +130,8 @@ menu_function() {
         *)
             echo "Ugyldig valg"
             ;;
-    esac
+        esac
+    done
 }
 
 

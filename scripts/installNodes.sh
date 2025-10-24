@@ -42,7 +42,9 @@ install_my_default_nodes(){
     install_general_node "https://github.com/kijai/ComfyUI-WanVideoWrapper" "ComfyUI-WanVideoWrapper"
     install_general_node "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite" "ComfyUI-VideoHelperSuite"
     install_general_node "https://github.com/rgthree/rgthree-comfy.git" "rgthree-comfy"
-    install_general_node "https://github.com/rakki194/ComfyUI-ImageCompare.git" "ComfyUI-ImageCompare"
+    install_general_node "https://github.com/Azornes/Comfyui-Resolution-Master.git" "Comfyui-Resolution-Master"
+    install_general_node "https://github.com/stduhpf/ComfyUI-WanMoeKSampler.git" "ComfyUI-WanMoeKSampler"
+    # install_general_node "https://github.com/rakki194/ComfyUI-ImageCompare.git" "ComfyUI-ImageCompare"
 }
 
 
