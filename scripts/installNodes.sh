@@ -97,7 +97,7 @@ cd $cdCustomNodes
 
 # Make sure we are in python enviorment: 
 [[ "$VIRTUAL_ENV" == "" ]]; INVENV=$?
-if [[ INVENV -eq 1]];then
+if [[ $INVENV -eq 1 ]];then
     echo "Not in python Venv. Now enabling Venv."
     source venv/bin/activate
 else
