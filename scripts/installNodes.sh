@@ -26,6 +26,7 @@ download_model(){
     dir=$1
     url=$2
     
+    mkdir -p "$dir"
     
     filename=$(basename "$url")
     
@@ -62,10 +63,10 @@ install_magicNodes(){
     # Extra steps
     # Install negative lora
     mv "$folderName/models/LoRA/mg_7lambda_negative.safetensors" "../models/loras/magicNodes/"
-    download_model "$cdModels/loras/" "https://huggingface.co/DD32/mg_7lambda_negative/resolve/main/mg_7lambda_negative.safetensors"
-    download_model "$cdCustomNodes/$folderName/depth-anything/" "https://huggingface.co/depth-anything/Depth-Anything-V2-Large/resolve/main/depth_anything_v2_vitl.pth"
-    download_model "$cdModels/clip_vision/" "https://huggingface.co/laion/CLIP-ViT-H-14-laion2B-s32B-b79K/resolve/main/open_clip_model.safetensors"
-    download_model "$cdModels/controlnet/" "https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/diffusers_xl_depth_full.safetensors"
+    download_model "$cdModels/loras" "https://huggingface.co/DD32/mg_7lambda_negative/resolve/main/mg_7lambda_negative.safetensors"
+    download_model "$cdCustomNodes/$folderName/depth-anything" "https://huggingface.co/depth-anything/Depth-Anything-V2-Large/resolve/main/depth_anything_v2_vitl.pth"
+    download_model "$cdModels/clip_vision" "https://huggingface.co/laion/CLIP-ViT-H-14-laion2B-s32B-b79K/resolve/main/open_clip_model.safetensors"
+    download_model "$cdModels/controlnet" "https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/diffusers_xl_depth_full.safetensors"
 
     # Install sageAttention
     pip install git+https://github.com/thu-ml/SageAttention
@@ -82,10 +83,10 @@ install_wan_animate_nodes(){
 install_MMAudio(){
     install_general_node "https://github.com/kijai/ComfyUI-MMAudio" "ComfyUI-MMAudio"
     
-    download_model "$cdModels/mmaudio/" "https://huggingface.co/Kijai/MMAudio_safetensors/resolve/main/mmaudio_large_44k_v2_fp16.safetensors"
-    download_model "$cdModels/mmaudio/" "https://huggingface.co/Kijai/MMAudio_safetensors/resolve/main/mmaudio_synchformer_fp16.safetensors"
-    download_model "$cdModels/mmaudio/" "https://huggingface.co/Kijai/MMAudio_safetensors/resolve/main/mmaudio_vae_44k_fp16.safetensors"
-    download_model "$cdModels/mmaudio/" "https://huggingface.co/Kijai/MMAudio_safetensors/resolve/main/apple_DFN5B-CLIP-ViT-H-14-384_fp16.safetensors"
+    download_model "$cdModels/mmaudio" "https://huggingface.co/Kijai/MMAudio_safetensors/resolve/main/mmaudio_large_44k_v2_fp16.safetensors"
+    download_model "$cdModels/mmaudio" "https://huggingface.co/Kijai/MMAudio_safetensors/resolve/main/mmaudio_synchformer_fp16.safetensors"
+    download_model "$cdModels/mmaudio" "https://huggingface.co/Kijai/MMAudio_safetensors/resolve/main/mmaudio_vae_44k_fp16.safetensors"
+    download_model "$cdModels/mmaudio" "https://huggingface.co/Kijai/MMAudio_safetensors/resolve/main/apple_DFN5B-CLIP-ViT-H-14-384_fp16.safetensors"
     
     
 }
