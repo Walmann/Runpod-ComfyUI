@@ -124,7 +124,7 @@ menu_function() {
     echo "2) MagicNodes"
     echo "3) Wan 2.2 Animate nodes"
     echo "4) JoyCaption"
-    echo "5) HunyuanVideoFoley"
+    echo "5) MMAudio"
 
 
 
@@ -149,8 +149,8 @@ menu_function() {
                 install_JoyCaptions
                 ;;
             5)
-                echo "Installing HunyuanVideoFoley"
-                install_HunyuanVideoFoley
+                echo "Installing MMAudio"
+                install_MMAudio
                 ;;
             *)
                 echo "Ugyldig valg: $choice"
