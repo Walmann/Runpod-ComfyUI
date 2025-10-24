@@ -79,16 +79,15 @@ install_wan_animate_nodes(){
     install_general_node "https://github.com/kijai/ComfyUI-segment-anything-2" "ComfyUI-segment-anything-2"
 
 }
-install_HunyuanVideoFoley(){
-    install_general_node "https://github.com/if-ai/ComfyUI_HunyuanVideoFoley.git" "ComfyUI_HunyuanVideoFoley"
+install_MMAudio(){
+    install_general_node "https://github.com/kijai/ComfyUI-MMAudio" "ComfyUI-MMAudio"
     
-    cd ComfyUI_HunyuanVideoFoley
+    download_model "$cdModels/mmaudio/" "https://huggingface.co/Kijai/MMAudio_safetensors/resolve/main/mmaudio_large_44k_v2_fp16.safetensors"
+    download_model "$cdModels/mmaudio/" "https://huggingface.co/Kijai/MMAudio_safetensors/resolve/main/mmaudio_synchformer_fp16.safetensors"
+    download_model "$cdModels/mmaudio/" "https://huggingface.co/Kijai/MMAudio_safetensors/resolve/main/mmaudio_vae_44k_fp16.safetensors"
+    download_model "$cdModels/mmaudio/" "https://huggingface.co/Kijai/MMAudio_safetensors/resolve/main/apple_DFN5B-CLIP-ViT-H-14-384_fp16.safetensors"
     
-    # This node has trouble installing these packages. Manually installing them.
-    apt update
-    apt install libavformat-dev libavdevice-dev
     
-    python install.py
 }
 
 install_JoyCaptions(){
@@ -104,8 +103,7 @@ install_JoyCaptions(){
     cd $cdCustomNodes
 }
 
-# Download models
-# echo "Downloading models"
+
 cdCustomNodes="/workspace/ComfyUI/custom_nodes"
 cdModels="/workspace/ComfyUI/models"
 cd $cdCustomNodes
