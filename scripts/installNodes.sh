@@ -76,6 +76,13 @@ install_wan_animate_nodes(){
     install_general_node "https://github.com/kijai/ComfyUI-segment-anything-2" "ComfyUI-segment-anything-2"
 
 }
+install_HunyuanVideoFoley(){
+    install_general_node "https://github.com/if-ai/ComfyUI_HunyuanVideoFoley.git" "ComfyUI_HunyuanVideoFoley"
+    
+    cd ComfyUI_HunyuanVideoFoley
+
+    python install.py
+}
 
 install_JoyCaptions(){
     cd $cdCustomNodes
@@ -112,6 +119,7 @@ menu_function() {
     echo "2) MagicNodes"
     echo "3) Wan 2.2 Animate nodes"
     echo "4) JoyCaption"
+    echo "5) JoyCaption"
 
 
 
@@ -134,6 +142,10 @@ menu_function() {
             4)
                 echo "Installing JoyCaption"
                 install_JoyCaptions
+                ;;
+            5)
+                echo "Installing HunyuanVideoFoley"
+                install_HunyuanVideoFoley
                 ;;
             *)
                 echo "Ugyldig valg: $choice"
