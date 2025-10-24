@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
 # set -e
 
+border()
+{
+    # Creates a border around text
+    title="| $1 |"
+    edge=$(echo "$title" | sed 's/./-/g')
+    echo "$edge"
+    echo "$title"
+    echo "$edge"
+}
+
+
 download_model_and_node_list(){
     # Nodes:
     border "Downloading Models and Node installer wizard"
@@ -142,15 +153,7 @@ git_get_nodes(){
     cd "$rootComfyUI" || exit 1
 }
 
-border()
-{
-    # Creates a border around text
-    title="| $1 |"
-    edge=$(echo "$title" | sed 's/./-/g')
-    echo "$edge"
-    echo "$title"
-    echo "$edge"
-}
+
 
 
 
