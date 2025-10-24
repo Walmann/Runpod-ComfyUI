@@ -119,7 +119,7 @@ menu_function() {
     echo "2) MagicNodes"
     echo "3) Wan 2.2 Animate nodes"
     echo "4) JoyCaption"
-    echo "5) JoyCaption"
+    echo "5) HunyuanVideoFoley"
 
 
 
