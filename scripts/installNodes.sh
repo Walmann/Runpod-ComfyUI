@@ -4,18 +4,21 @@ install_general_node(){
     repo_url=$1
     folderName=$2
     
-    git clone "$repo_url" "$folderName"
-    
-    cd "$folderName" || exit 1
-
-    # Installer dependencies hvis requirements.txt finnes
-    if [ -f "requirements.txt" ]; then
-        echo "Installing dependencies for $folderName"
-        pip install -r requirements.txt | grep -v 'already satisfied'
+    if [ -d "$folderName" ]; then
+        echo "[$folderName] already exists, Skipping."
     else
-        echo "No requirements.txt found for $folderName, skipping."
+        git clone "$repo_url" "$folderName"
+        
+        cd "$folderName" || exit 1
+
+        # Installer dependencies hvis requirements.txt finnes
+        if [ -f "requirements.txt" ]; then
+            echo "Installing dependencies for $folderName"
+            pip install -r requirements.txt | grep -v 'already satisfied'
+        else
+            echo "No requirements.txt found for $folderName, skipping."
+        fi
     fi
-    
     cd $cdCustomNodes
 }
 
@@ -80,7 +83,11 @@ install_HunyuanVideoFoley(){
     install_general_node "https://github.com/if-ai/ComfyUI_HunyuanVideoFoley.git" "ComfyUI_HunyuanVideoFoley"
     
     cd ComfyUI_HunyuanVideoFoley
-
+    
+    # This node has trouble installing these packages. Manually installing them.
+    apt update
+    apt install libavformat-dev libavdevice-dev
+    
     python install.py
 }
 
