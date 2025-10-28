@@ -89,7 +89,7 @@ install_VideoNodes(){
     # Frame interpolation
     install_general_node "https://github.com/Fannovel16/ComfyUI-Frame-Interpolation" "ComfyUI-Frame-Interpolation"
     cd "ComfyUI-Frame-Interpolation"
-    python install.py
+    python3 install.py
 
 
     cd $cdCustomNodes
@@ -119,6 +119,22 @@ install_JoyCaptions(){
     cd $cdCustomNodes
 }
 
+install_reactor(){
+    cd $cdCustomNodes
+    
+    install_general_node "https://github.com/Gourieff/ComfyUI-ReActor" "ComfyUI-ReActor"
+    
+    # Extra steps
+    download_model "reswapper" "https://huggingface.co/datasets/Gourieff/ReActor/resolve/main/models/reswapper_256.onnx"
+    download_model "insightface" "https://huggingface.co/datasets/Gourieff/ReActor/resolve/main/models/reswapper_256.onnx"
+    
+    cd "ComfyUI-ReActor"
+
+    python3 install.py
+
+    cd $cdCustomNodes
+}
+
 
 cdCustomNodes="/workspace/ComfyUI/custom_nodes"
 cdModels="/workspace/ComfyUI/models"
@@ -142,6 +158,7 @@ menu_function() {
     echo "4) JoyCaption"
     echo "5) MMAudio"
     echo "6) Video Nodes"
+    echo "7) Reactor Nodes + models"
 
 
 
@@ -172,6 +189,10 @@ menu_function() {
             6)
                 echo "Installing Video Nodes"
                 install_VideoNodes
+                ;;
+            7)
+                echo "Installing Reactor + models"
+                install_reactor
                 ;;
             *)
                 echo "Ugyldig valg: $choice"
