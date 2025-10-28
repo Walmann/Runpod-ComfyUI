@@ -45,11 +45,8 @@ install_my_default_nodes(){
     install_general_node "https://github.com/ltdrdata/ComfyUI-Impact-Subpack" "ComfyUI-Impact-Subpack"
     install_general_node "https://github.com/hayden-fr/ComfyUI-Model-Manager.git" "ComfyUI-Model-Manager"
     install_general_node "https://github.com/VraethrDalkr/ComfyUI-TripleKSampler.git" "ComfyUI-TripleKSampler"
-    install_general_node "https://github.com/kijai/ComfyUI-WanVideoWrapper" "ComfyUI-WanVideoWrapper"
-    install_general_node "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite" "ComfyUI-VideoHelperSuite"
     install_general_node "https://github.com/rgthree/rgthree-comfy.git" "rgthree-comfy"
     install_general_node "https://github.com/Azornes/Comfyui-Resolution-Master.git" "Comfyui-Resolution-Master"
-    install_general_node "https://github.com/stduhpf/ComfyUI-WanMoeKSampler.git" "ComfyUI-WanMoeKSampler"
     install_general_node "https://github.com/Fannovel16/comfyui_controlnet_aux/" "comfyui_controlnet_aux"
     # install_general_node "https://github.com/rakki194/ComfyUI-ImageCompare.git" "ComfyUI-ImageCompare"
 }
@@ -81,8 +78,23 @@ install_wan_animate_nodes(){
     install_general_node "https://github.com/Fannovel16/comfyui_controlnet_aux/" "comfyui_controlnet_aux"
     install_general_node "https://github.com/kijai/ComfyUI-KJNodes" "ComfyUI-KJNodes"
     install_general_node "https://github.com/kijai/ComfyUI-segment-anything-2" "ComfyUI-segment-anything-2"
-
 }
+
+install_VideoNodes(){
+    install_wan_animate_nodes
+    install_general_node "https://github.com/kijai/ComfyUI-WanVideoWrapper" "ComfyUI-WanVideoWrapper"
+    install_general_node "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite" "ComfyUI-VideoHelperSuite"
+    install_general_node "https://github.com/stduhpf/ComfyUI-WanMoeKSampler.git" "ComfyUI-WanMoeKSampler"
+
+    # Frame interpolation
+    install_general_node "https://github.com/Fannovel16/ComfyUI-Frame-Interpolation" "ComfyUI-Frame-Interpolation"
+    cd "ComfyUI-Frame-Interpolation"
+    python install.py
+
+
+    cd $cdCustomNodes
+}
+
 install_MMAudio(){
     install_general_node "https://github.com/kijai/ComfyUI-MMAudio" "ComfyUI-MMAudio"
     
@@ -129,6 +141,7 @@ menu_function() {
     echo "3) Wan 2.2 Animate nodes"
     echo "4) JoyCaption"
     echo "5) MMAudio"
+    echo "6) Video Nodes"
 
 
 
@@ -155,6 +168,10 @@ menu_function() {
             5)
                 echo "Installing MMAudio"
                 install_MMAudio
+                ;;
+            6)
+                echo "Installing Video Nodes"
+                install_VideoNodes
                 ;;
             *)
                 echo "Ugyldig valg: $choice"
