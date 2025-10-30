@@ -98,7 +98,7 @@ install_magicNodes(){
     download_model "$cdModels/controlnet" "https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/diffusers_xl_depth_full.safetensors"
 
     # Install sageAttention
-    pip install git+https://github.com/thu-ml/SageAttention
+    pip install git+https://github.com/thu-ml/SageAttention | grep -v 'already satisfied'
     
     cd $cdCustomNodes
 }
