@@ -30,6 +30,7 @@ rootWorkspace="/workspace"
 rootComfyUI="/workspace/ComfyUI"
 rootModels="/workspace/ComfyUI/models"
 rootCustomNodes="/workspace/ComfyUI/custom_nodes"
+rootVenv="/workspace/venv/bin/activate"
 cd $rootWorkspace
 
 
@@ -169,20 +170,13 @@ download_model_and_node_list
 
 cd $rootComfyUI
 echo "ComfyUI: Installing requirements"
+source $rootVenv
 pip install -r requirements.txt   | grep -v 'already satisfied'
 
 
 # Install pip packages. Placed into function for faster debugging.
 install_pip_packages
 
-
-# # Download and install nodes
-# echo "Download and install nodes"
-# cd "$rootCustomNodes"
-# git_get_nodes "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/nodes.txt"
-
-# Download script for installing nodes and models. 
-# These are kept in github more rapid updating.
 cd /
 
 
