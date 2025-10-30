@@ -34,7 +34,7 @@ install_general_node(){
     repo_url=$1
     folderName=$2
     
-    printf "\n\n\n\n Installing $folderName:"
+    border "Installing $folderName:"
 
     if [ -d "$folderName" ]; then
 
