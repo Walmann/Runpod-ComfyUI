@@ -51,8 +51,9 @@ mkdir -p /workspace
 # Check if a python Venv already exists
 if test -d ./venv; then
     # Add check for if there actually is a venv here.
-    border "Found Venv. Using that!"
     source $rootWorkspace/venv/bin/activate
+    pyPath=which python3
+    border "Found Venv. Using that! Python path: $pyPath"
 
 else
     border "Found no Virtual enviorment. Creating one now."
@@ -81,16 +82,15 @@ fi
 install_pip_packages(){
     # Install some known missing packages: 
     echo "Installing pip packages: "
-    pip install \
-        opencv-python \
-        requests \
-        runpod==1.7.7 \
-        huggingface_hub \
-        huggingface_hub[cli] \
-        onnxruntime-gpu \
-        onnx \
-        sageattention \
-        | grep -v 'already satisfied'
+    pip install opencv-python           | grep -v 'already satisfied'
+    pip install requests                | grep -v 'already satisfied'
+    pip install runpod==1.7.7           | grep -v 'already satisfied'
+    pip install huggingface_hub         | grep -v 'already satisfied'
+    pip install huggingface_hub[cli]    | grep -v 'already satisfied'
+    pip install onnxruntime             | grep -v 'already satisfied'
+    pip install onnxruntime-gpu         | grep -v 'already satisfied'
+    pip install onnx                    | grep -v 'already satisfied'
+    pip install sageattention           | grep -v 'already satisfied'
 }
 
 
