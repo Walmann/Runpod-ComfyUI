@@ -9,10 +9,10 @@
 # Script Descripton
 | Script  | Description |
 | ------| ------- |
-| installComfyUI.su     | Installs and runs Comfyui. This also installs "Default nodes" from installNodes |
-| installCopyParty.su   | Installs CopyParty. You then need to run startCopyParty.su to run it|
-| installModels.su      | Tool to install models, for easy startup. |
-| installNodes.su       | Tool to install nodes, for easy startup.  |
+| installComfyUI.sh     | Installs and runs Comfyui. This also installs "Default nodes" from installNodes |
+| installCopyParty.sh   | Installs CopyParty. You then need to run startCopyParty.su to run it|
+| installModels.sh      | Tool to install models, for easy startup. |
+| installNodes.sh       | Tool to install nodes, for easy startup.  |
 
 
 python 3.11
