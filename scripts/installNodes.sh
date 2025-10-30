@@ -78,6 +78,7 @@ install_wan_animate_nodes(){
     install_general_node "https://github.com/Fannovel16/comfyui_controlnet_aux/" "comfyui_controlnet_aux"
     install_general_node "https://github.com/kijai/ComfyUI-KJNodes" "ComfyUI-KJNodes"
     install_general_node "https://github.com/kijai/ComfyUI-segment-anything-2" "ComfyUI-segment-anything-2"
+    install_general_node "https://github.com/kijai/ComfyUI-WanAnimatePreprocess" "ComfyUI-WanAnimatePreprocess"
 }
 
 install_VideoNodes(){
