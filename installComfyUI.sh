@@ -18,6 +18,8 @@ download_model_and_node_list(){
     curl -L --progress-bar "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/installNodes.sh" -o "/installNodes.sh" 
     # Models: 
     curl -L --progress-bar "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/installModels.sh" -o "/installModels.sh" 
+    # CloseUpShop Backup: 
+    curl -L --progress-bar "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/closeUpShop.sh" -o "/closeUpShop.sh" 
 
 }
 

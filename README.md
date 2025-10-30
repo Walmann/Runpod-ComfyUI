@@ -13,6 +13,7 @@
 | installCopyParty.sh   | Installs CopyParty. You then need to run startCopyParty.su to run it|
 | installModels.sh      | Tool to install models, for easy startup. |
 | installNodes.sh       | Tool to install nodes, for easy startup.  |
+| closeUpShop.sh        | Tool to backup data when closing a pod.   |
 
 
 python 3.11
