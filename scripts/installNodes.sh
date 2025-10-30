@@ -22,7 +22,11 @@ install_dependencies(){
         echo "Installing dependencies for $folderName"
         pip install -r requirements.txt | grep -v 'already satisfied'
     else
-        echo "No requirements.txt found for $folderName, skipping."
+        if [ -d $folderName ]; then
+            echo "No requirements.txt found for $folderName, skipping."
+        else
+            border "Could not find folder named $folderName, this is most likely an error in installNodes.sh"
+        fi
     fi
 }
 
