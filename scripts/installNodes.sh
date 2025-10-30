@@ -143,7 +143,7 @@ from scripts.reactor_logger import logger
 MODEL_EXISTS = False
 
 def ensure_nsfw_model(nsfwdet_model_path):
-    """Download NSFW detection model if it doesn't exist"""
+    """Download NSFW detection model if it doesn exist"""
     global MODEL_EXISTS
     downloaded = 0
     nd_urls = [
