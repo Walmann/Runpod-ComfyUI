@@ -78,7 +78,10 @@ install_wan_animate_nodes(){
     install_general_node "https://github.com/Fannovel16/comfyui_controlnet_aux/" "comfyui_controlnet_aux"
     install_general_node "https://github.com/kijai/ComfyUI-KJNodes" "ComfyUI-KJNodes"
     install_general_node "https://github.com/kijai/ComfyUI-segment-anything-2" "ComfyUI-segment-anything-2"
+
+
     install_general_node "https://github.com/kijai/ComfyUI-WanAnimatePreprocess" "ComfyUI-WanAnimatePreprocess"
+    download_model "$cdModels/sams" "https://huggingface.co/VeryAladeen/Sec-4B/resolve/main/SeC-4B-fp16.safetensors"
 }
 
 install_VideoNodes(){

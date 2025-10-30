@@ -51,13 +51,13 @@ mkdir -p /workspace
 # Check if a python Venv already exists
 if test -d ./venv; then
     # Add check for if there actually is a venv here.
-    echo "Found Venv. Using that!"
-    source venv/bin/activate
+    border "Found Venv. Using that!"
+    source $rootWorkspace/venv/bin/activate
 
 else
-    echo "Found no Virtual enviorment. Creating one now."
+    border "Found no Virtual enviorment. Creating one now."
     python3 -m venv venv
-    source venv/bin/activate
+    source $rootWorkspace/venv/bin/activate
     printf "Created Venv. Location: "
     which python
     python3 -V
