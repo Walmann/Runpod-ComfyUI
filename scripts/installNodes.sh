@@ -1,5 +1,19 @@
 #!/bin/bash
 
+reinstallRequirements=$1
+
+
+install_dependencies(){
+    folderName=$1
+    # Installer dependencies hvis requirements.txt finnes
+    if [ -f "requirements.txt" ]; then
+        echo "Installing dependencies for $folderName"
+        pip install -r requirements.txt | grep -v 'already satisfied'
+    else
+        echo "No requirements.txt found for $folderName, skipping."
+    fi
+}
+
 install_general_node(){
     repo_url=$1
     folderName=$2
@@ -7,19 +21,18 @@ install_general_node(){
     printf "\n\n\n\n Installing $folderName:"
 
     if [ -d "$folderName" ]; then
-        echo "[$folderName] already exists, Skipping."
+
+        # If reinstall variable given, reinstall requirements.
+        if [ "$1" == "reinstall" ]; then
+            install_dependencies $folderName
+        else
+            echo "[$folderName] already exists, Skipping."
+        fi
+    
     else
         git clone "$repo_url" "$folderName"
-        
         cd "$folderName" || exit 1
-
-        # Installer dependencies hvis requirements.txt finnes
-        if [ -f "requirements.txt" ]; then
-            echo "Installing dependencies for $folderName"
-            pip install -r requirements.txt | grep -v 'already satisfied'
-        else
-            echo "No requirements.txt found for $folderName, skipping."
-        fi
+        install_dependencies $folderName
     fi
     cd $cdCustomNodes
 }
@@ -180,6 +193,7 @@ def nsfw_image(img_data, model_path: str):
 
 
 cdCustomNodes="/workspace/ComfyUI/custom_nodes"
+rootWorkspace="/workspace"
 cdModels="/workspace/ComfyUI/models"
 cd $cdCustomNodes
 # download_models "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/models.txt"
@@ -188,7 +202,7 @@ cd $cdCustomNodes
 [[ "$VIRTUAL_ENV" == "" ]]; INVENV=$?
 if [[ $INVENV -eq 1 ]];then
     echo "Not in python Venv. Now enabling Venv."
-    source venv/bin/activate
+    source $rootWorkspace/venv/bin/activate
 else
     echo "Already in python Venv"
 fi
