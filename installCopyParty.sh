@@ -8,5 +8,6 @@ apt-get install -y \
 cd workspace
 wget https://github.com/9001/copyparty/releases/latest/download/copyparty-sfx.py
 
+chmod 775 -R /workspace
 
 # python3 ./copyparty-sfx.py
