@@ -2,6 +2,18 @@
 
 reinstallRequirements=$1
 
+border()
+{
+    # Creates a border around text
+    title="| $1 |"
+    edge=$(echo "$title" | sed 's/./-/g')
+    echo "$edge"
+    echo "$title"
+    echo "$edge"
+}
+
+
+
 
 install_dependencies(){
     folderName=$1
@@ -198,14 +210,7 @@ cdModels="/workspace/ComfyUI/models"
 cd $cdCustomNodes
 # download_models "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/models.txt"
 
-# Make sure we are in python enviorment: 
-[[ "$VIRTUAL_ENV" == "" ]]; INVENV=$?
-if [[ $INVENV -eq 1 ]];then
-    echo "Not in python Venv. Now enabling Venv."
-    source $rootWorkspace/venv/bin/activate
-else
-    echo "Already in python Venv"
-fi
+
 
 menu_function() {
     echo "Choose model to download:"
@@ -260,9 +265,18 @@ menu_function() {
 
 
 
+# Make sure we are in python enviorment: 
+[[ "$VIRTUAL_ENV" == "" ]]; INVENV=$?
+if [[ $INVENV -eq 1 ]];then
+    echo "Not in python Venv. Now enabling Venv."
+    source $rootWorkspace/venv/bin/activate
+else
+    echo "Already in python Venv"
+fi
+
 while true; do
     if [ "$1" == "default" ]; then
-        echo "Installing default nodes."
+        border "Installing your default nodes."
         install_my_default_nodes
         break
     else
