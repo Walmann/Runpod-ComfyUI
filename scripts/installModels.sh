@@ -71,7 +71,7 @@ menu_function() {
                 download_models "text_encoders" "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors"
                 download_models "vae" "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors"
                 download_models "clip_vision/WAN2.2Animate" "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/clip_vision/clip_vision_h.safetensors"
-                download_models "unet/WAN2.2Animate" "https://huggingface.co/QuantStack/Wan2.2-Animate-14B-GGUF/resolve/main/Wan2.2-Animate-14B-Q8_0.gguf"
+                # download_models "unet/WAN2.2Animate" "https://huggingface.co/QuantStack/Wan2.2-Animate-14B-GGUF/resolve/main/Wan2.2-Animate-14B-Q8_0.gguf"
                 ;;
             3)
                 echo            "Downloading Qwen_image_edit_2509"
@@ -132,7 +132,7 @@ menu_function() {
                 echo            "Downloading Flux Krea-Dev"
                 download_models "diffusion_models/FluxKrea" "https://huggingface.co/Comfy-Org/FLUX.1-Krea-dev_ComfyUI/resolve/main/split_files/diffusion_models/flux1-krea-dev_fp8_scaled.safetensors"
                 download_models "text_encoders" "https://huggingface.co/comfyanonymous/flux_text_encoders/blob/main/clip_l.safetensors"
-                download_models "text_encoders" "https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp16.safetensors"
+                download_models "text_encoders" "https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp8_e4m3fn_scaled.safetensors"
                 download_models "vae" "https://huggingface.co/Comfy-Org/Lumina_Image_2.0_Repackaged/resolve/main/split_files/vae/ae.safetensors"
                 ;;
             *)
