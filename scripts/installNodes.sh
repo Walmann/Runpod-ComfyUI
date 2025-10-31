@@ -36,6 +36,16 @@ install_general_node(){
     
     border "Installing $folderName:"
 
+
+    # Make sure we are in python enviorment: 
+    [[ "$VIRTUAL_ENV" == "" ]]; INVENV=$?
+    if [[ $INVENV -eq 1 ]];then
+        border "Not in python Venv. Now enabling Venv."
+        source $rootWorkspace/venv/bin/activate
+    fi
+
+
+
     if [ -d "$folderName" ]; then
 
         # If reinstall variable given, reinstall requirements.
@@ -46,6 +56,7 @@ install_general_node(){
         fi
     
     else
+
         git clone "$repo_url" "$folderName"
         cd "$folderName" || exit 1
         install_dependencies $folderName
