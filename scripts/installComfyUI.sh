@@ -12,21 +12,9 @@ border()
 }
 
 
-download_model_and_node_list(){
-    # Nodes:
-    border "Downloading Models and Node installer wizard"
-    curl -L --progress-bar "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/installNodes.sh" -o "/installNodes.sh" 
-    # Models: 
-    curl -L --progress-bar "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/installModels.sh" -o "/installModels.sh" 
-    # CloseUpShop Backup: 
-    curl -L --progress-bar "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/closeUpShop.sh" -o "/closeUpShop.sh" 
 
-}
 
-if [ "$1" == "downloadOnly" ]; then
-    download_model_and_node_list
-    exit 1
-fi
+
 
 rootWorkspace="/workspace"
 rootComfyUI="/workspace/ComfyUI"
@@ -55,7 +43,7 @@ mkdir -p /workspace
 if test -d ./venv; then
     # Add check for if there actually is a venv here.
     source $rootWorkspace/venv/bin/activate
-    pyPath=which python3
+    pyPath=$(which python3)
     border "Found Venv. Using that! Python path: $pyPath"
 
 else
@@ -155,18 +143,6 @@ git_get_nodes(){
 
     cd "$rootComfyUI" || exit 1
 }
-
-
-
-
-
-# The download is above installing Comfy requirements so you can start downloading models before waiting for requirements to install
-download_model_and_node_list
-
-
-
-
-
 
 
 
