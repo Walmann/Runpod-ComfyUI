@@ -47,6 +47,7 @@ menu_function() {
     echo "9) Impack Pack Models"
     echo "10) Wan 2.2 14B T2V"
     echo "11) SDXL Realviz"
+    echo "12) Flux Krea-Dev"
 
 
     read -p "Skriv inn nummer: " -a choices
@@ -126,6 +127,13 @@ menu_function() {
             11)
                 echo            "Downloading Wan2.2 14B T2V"
                 download_models "checkpoints/SDXL" "https://huggingface.co/SG161222/RealVisXL_V5.0/resolve/main/RealVisXL_V5.0_fp32.safetensors"
+                ;;
+            12)
+                echo            "Downloading Flux Krea-Dev"
+                download_models "diffusion_models/FluxKrea" "https://huggingface.co/Comfy-Org/FLUX.1-Krea-dev_ComfyUI/resolve/main/split_files/diffusion_models/flux1-krea-dev_fp8_scaled.safetensors"
+                download_models "text_encoders" "https://huggingface.co/comfyanonymous/flux_text_encoders/blob/main/clip_l.safetensors"
+                download_models "text_encoders" "https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp16.safetensors"
+                download_models "vae" "https://huggingface.co/Comfy-Org/Lumina_Image_2.0_Repackaged/resolve/main/split_files/vae/ae.safetensors"
                 ;;
             *)
                 echo "Ugyldig valg"
