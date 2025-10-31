@@ -215,11 +215,16 @@ def nsfw_image(img_data, model_path: str):
 }
 
 
+install_SecNodes(){
+    install_general_node "https://github.com/9nate-drake/Comfyui-SecNodes" "Comfyui-SecNodes"
+
+    download_model "$cdModels/sams" "https://huggingface.co/VeryAladeen/Sec-4B/resolve/main/SeC-4B-fp16.safetensors"
+}
+
 cdCustomNodes="/workspace/ComfyUI/custom_nodes"
 rootWorkspace="/workspace"
 cdModels="/workspace/ComfyUI/models"
 cd $cdCustomNodes
-# download_models "https://raw.githubusercontent.com/Walmann/Runpod-ComfyUI/refs/heads/main/scripts/models.txt"
 
 
 
@@ -232,6 +237,7 @@ menu_function() {
     echo "5) MMAudio"
     echo "6) Video Nodes"
     echo "7) Reactor Nodes + models"
+    echo "8) Comfyui-SecNodes + models"
 
 
 
@@ -266,6 +272,10 @@ menu_function() {
             7)
                 echo "Installing Reactor + models"
                 install_reactor
+                ;;
+            8)
+                echo "Installing SecNodes + models"
+                install_SecNodes
                 ;;
             *)
                 echo "Ugyldig valg: $choice"
