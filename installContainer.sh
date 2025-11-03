@@ -22,7 +22,7 @@ download_model_and_node_list(){
     echo "Moving to root folder"
 
     echo "Setting executables"
-    chmod +x ./installComfyUI.sh
+    chmod +x /installComfyUI.sh
     
     # # Nodes:
     # border "Downloading Models and Node installer wizard"
