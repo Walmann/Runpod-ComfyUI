@@ -16,6 +16,7 @@ download_model_and_node_list(){
     echo "Content of Runpod-ComfyUI/scripts:"
     ls Runpod-ComfyUI/scripts
     mv -f Runpod-ComfyUI/scripts/* /
+    mv -f Runpod-ComfyUI/configs/* /workspace/configs/
     rm -rf Runpod-ComfyUI
 
     echo "Moving to root folder"
