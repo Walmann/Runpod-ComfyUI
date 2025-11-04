@@ -161,7 +161,10 @@ border "To install models, open a WebTerminal and run installModels.sh (Found in
 
 
 border "Creating copy of extra_models_paths.yaml in ComfyUI folder"
-cp /configs/extra_models_paths.yaml $rootComfyUI/
+cd $rootWorkspace/myModels
+mkdir -p checkpoints text_encoders clip clip_vision configs controlnet diffusion_models unet embeddings loras upscale_models vae audio_encoders model_patches
+
+cp /workspace/configs/extra_models_paths.yaml $rootComfyUI/
 
 
 printf "ComfyUI: Staring ComfyUI"

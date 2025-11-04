@@ -7,22 +7,22 @@ comfyui:
     base_path: /workspace/myModels/
     # You can use is_default to mark that these folders should be listed first, and used as the default dirs for eg downloads
     is_default: true
-    checkpoints: models/checkpoints/
+    checkpoints: checkpoints/
     text_encoders: |
-         models/text_encoders/
-         models/clip/  # legacy location still supported
-    clip_vision: models/clip_vision/
-    configs: models/configs/
-    controlnet: models/controlnet/
+         text_encoders/
+         clip/  # legacy location still supported
+    clip_vision: clip_vision/
+    configs: configs/
+    controlnet: controlnet/
     diffusion_models: |
-                 models/diffusion_models
-                 models/unet
-    embeddings: models/embeddings/
-    loras: models/loras/
-    upscale_models: models/upscale_models/
-    vae: models/vae/
-    audio_encoders: models/audio_encoders/
-    model_patches: models/model_patches/
+                 diffusion_models
+                 unet
+    embeddings: embeddings/
+    loras: loras/
+    upscale_models: upscale_models/
+    vae: vae/
+    audio_encoders: audio_encoders/
+    model_patches: model_patches/
 
 
 #config for a1111 ui
