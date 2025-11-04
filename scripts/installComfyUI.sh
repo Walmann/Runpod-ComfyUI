@@ -159,9 +159,9 @@ bash installNodes.sh "default"
 
 border "To install models, open a WebTerminal and run installModels.sh (Found in root directory)\nTo install additional Nodes, open a WebTerminal and run installNodes.sh (Found in root directory)"
 
-border "Copying extra_models_paths.yaml to ComfyUI folder."
-cp /configs/extra_models_paths.yaml $rootComfyUI/
 
+border "Creating copy of extra_models_paths.yaml in ComfyUI folder"
+cp /configs/extra_models_paths.yaml $rootComfyUI/
 
 
 printf "ComfyUI: Staring ComfyUI"
