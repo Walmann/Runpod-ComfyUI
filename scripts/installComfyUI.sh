@@ -71,7 +71,7 @@ install_pip_packages(){
     echo "Installing pip packages: "
     pip install opencv-python           | grep -v 'already satisfied'
     pip install requests                | grep -v 'already satisfied'
-    pip install runpod==1.7.7           | grep -v 'already satisfied'
+    # pip install runpod==1.7.7           | grep -v 'already satisfied'
     pip install huggingface_hub         | grep -v 'already satisfied'
     pip install huggingface_hub[cli]    | grep -v 'already satisfied'
     pip install onnxruntime             | grep -v 'already satisfied'
@@ -160,7 +160,7 @@ bash installNodes.sh "default"
 border "To install models, open a WebTerminal and run installModels.sh (Found in root directory)\nTo install additional Nodes, open a WebTerminal and run installNodes.sh (Found in root directory)"
 
 
-border "Creating copy of extra_models_paths.yaml in ComfyUI folder"
+border "Configuring extra_models_paths.yaml"
 cd $rootWorkspace/myModels
 mkdir -p checkpoints text_encoders clip clip_vision configs controlnet diffusion_models unet embeddings loras upscale_models vae audio_encoders model_patches
 
