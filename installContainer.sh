@@ -16,6 +16,10 @@ download_model_and_node_list(){
     echo "Content of Runpod-ComfyUI/scripts:"
     ls Runpod-ComfyUI/scripts
     mv -f Runpod-ComfyUI/scripts/* /
+
+    echo "Content of Runpod-ComfyUI/configs:"
+    ls Runpod-ComfyUI/configs
+    mkdir /workspace/configs/
     mv -f Runpod-ComfyUI/configs/* /workspace/configs/
     rm -rf Runpod-ComfyUI
 

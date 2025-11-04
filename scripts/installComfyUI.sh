@@ -13,9 +13,6 @@ border()
 
 
 
-
-
-
 rootWorkspace="/workspace"
 rootComfyUI="/workspace/ComfyUI"
 rootModels="/workspace/ComfyUI/models"
@@ -45,7 +42,6 @@ if test -d ./venv; then
     source $rootWorkspace/venv/bin/activate
     pyPath=$(which python3)
     border "Found Venv. Using that! Python path: $pyPath"
-
 else
     border "Found no Virtual enviorment. Creating one now."
     python3 -m venv venv
@@ -85,64 +81,64 @@ install_pip_packages(){
 }
 
 
-git_get_nodes(){
-    local list_url="$1"
-    local tmp_nodelist="/tmp/node_list.txt"
+# git_get_nodes(){
+#     local list_url="$1"
+#     local tmp_nodelist="/tmp/node_list.txt"
 
-    # Download Node list
-    echo "Downloading nodes list from: $list_url"
-    curl -L --progress-bar "$list_url" -o "$tmp_nodelist"
-    if [[ $? -ne 0 ]]; then
-        echo "Could not download list."
-        return 1
-    fi
-
-
-    cd "$rootCustomNodes" || exit 1
+#     # Download Node list
+#     echo "Downloading nodes list from: $list_url"
+#     curl -L --progress-bar "$list_url" -o "$tmp_nodelist"
+#     if [[ $? -ne 0 ]]; then
+#         echo "Could not download list."
+#         return 1
+#     fi
 
 
-    # Gå gjennom hver linje i lista
-    while IFS= read -r line; do
-
-        cd "$rootCustomNodes" || exit 1
-        # Skip empty lines and comments
-        [[ -z "$line" || "$line" =~ ^# ]] && continue
-
-        eval set -- $line
-        repo_url=$1
-        folderName=$2
-
-        repo_url="${repo_url%\"}"
-        repo_url="${repo_url#\"}"
-        folderName="${folderName%\"}"
-        folderName="${folderName#\"}"
-
-        # # Sjekk om URLen er et git-repo eller en vanlig fil
-        # if [[ "$repo_url" =~ \.git$ ]]; then
-        # Git repository
-        if [ -d "$folderName" ]; then
-            echo "[$folderName] already exists, Skipping."
-            # cd "$folderName" || exit 1
-            # git pull
-        else
-            echo "[$folderName] not found, cloning now..."
-            git clone "$repo_url" "$folderName"
-            cd "$folderName" || exit 1
-
-            # Installer dependencies hvis requirements.txt finnes
-            if [ -f "requirements.txt" ]; then
-                echo "Installing dependencies for $folderName"
-                pip install -r requirements.txt | grep -v 'already satisfied'
-            else
-                echo "No requirements.txt found for $folderName, skipping."
-            fi
-        fi
+#     cd "$rootCustomNodes" || exit 1
 
 
-    done < "$tmp_nodelist"
+#     # Gå gjennom hver linje i lista
+#     while IFS= read -r line; do
 
-    cd "$rootComfyUI" || exit 1
-}
+#         cd "$rootCustomNodes" || exit 1
+#         # Skip empty lines and comments
+#         [[ -z "$line" || "$line" =~ ^# ]] && continue
+
+#         eval set -- $line
+#         repo_url=$1
+#         folderName=$2
+
+#         repo_url="${repo_url%\"}"
+#         repo_url="${repo_url#\"}"
+#         folderName="${folderName%\"}"
+#         folderName="${folderName#\"}"
+
+#         # # Sjekk om URLen er et git-repo eller en vanlig fil
+#         # if [[ "$repo_url" =~ \.git$ ]]; then
+#         # Git repository
+#         if [ -d "$folderName" ]; then
+#             echo "[$folderName] already exists, Skipping."
+#             # cd "$folderName" || exit 1
+#             # git pull
+#         else
+#             echo "[$folderName] not found, cloning now..."
+#             git clone "$repo_url" "$folderName"
+#             cd "$folderName" || exit 1
+
+#             # Installer dependencies hvis requirements.txt finnes
+#             if [ -f "requirements.txt" ]; then
+#                 echo "Installing dependencies for $folderName"
+#                 pip install -r requirements.txt | grep -v 'already satisfied'
+#             else
+#                 echo "No requirements.txt found for $folderName, skipping."
+#             fi
+#         fi
+
+
+#     done < "$tmp_nodelist"
+
+#     cd "$rootComfyUI" || exit 1
+# }
 
 
 
@@ -162,6 +158,11 @@ echo "Installing default nodes"
 bash installNodes.sh "default"
 
 border "To install models, open a WebTerminal and run installModels.sh (Found in root directory)\nTo install additional Nodes, open a WebTerminal and run installNodes.sh (Found in root directory)"
+
+border "Copying extra_models_paths.yaml to ComfyUI folder."
+cp /configs/extra_models_paths.yaml $rootComfyUI/
+
+
 
 printf "ComfyUI: Staring ComfyUI"
 cd $rootComfyUI
