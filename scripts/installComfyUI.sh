@@ -169,6 +169,6 @@ mkdir -p checkpoints text_encoders clip clip_vision configs controlnet diffusion
 cp /workspace/configs/extra_models_paths.yaml $rootComfyUI/
 
 
-printf "ComfyUI: Staring ComfyUI"
+border "ComfyUI: Staring ComfyUI"
 cd $rootComfyUI
 python3 main.py --listen 0.0.0.0 --port 3001
