@@ -1,7 +1,7 @@
 # Stage 1: Base Image
 # ashleykza/a1111:1.10.0.post7
-# FROM nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04
-FROM nvidia/cuda:12.8.1-cudnn-devel-ubuntu22.04
+FROM nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04
+# FROM nvidia/cuda:12.8.1-cudnn-devel-ubuntu22.04
 
 # Setting timezome. This saves time when installing python. 
 # RUN ln -snf /usr/share/zoneinfo/$CONTAINER_TIMEZONE /etc/localtime && echo $CONTAINER_TIMEZONE > /etc/timezone
