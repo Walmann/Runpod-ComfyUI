@@ -86,13 +86,14 @@ install_my_default_nodes(){
     install_general_node "https://github.com/ltdrdata/ComfyUI-Manager" "comfyui-manager"
     install_general_node "https://github.com/ltdrdata/ComfyUI-Impact-Pack" "comfyui-impact-pack"
     install_general_node "https://github.com/ltdrdata/ComfyUI-Impact-Subpack" "ComfyUI-Impact-Subpack"
-    install_general_node "https://github.com/hayden-fr/ComfyUI-Model-Manager.git" "ComfyUI-Model-Manager"
-    install_general_node "https://github.com/VraethrDalkr/ComfyUI-TripleKSampler.git" "ComfyUI-TripleKSampler"
+    # install_general_node "https://github.com/hayden-fr/ComfyUI-Model-Manager.git" "ComfyUI-Model-Manager"
+    # install_general_node "https://github.com/VraethrDalkr/ComfyUI-TripleKSampler.git" "ComfyUI-TripleKSampler"
     install_general_node "https://github.com/rgthree/rgthree-comfy.git" "rgthree-comfy"
     install_general_node "https://github.com/Azornes/Comfyui-Resolution-Master.git" "Comfyui-Resolution-Master"
-    install_general_node "https://github.com/Fannovel16/comfyui_controlnet_aux/" "comfyui_controlnet_aux"
+    # install_general_node "https://github.com/Fannovel16/comfyui_controlnet_aux/" "comfyui_controlnet_aux"
     install_general_node "https://github.com/SeanScripts/ComfyUI-Unload-Model.git" "ComfyUI-Unload-Model"
     install_general_node "https://github.com/tzwm/comfyui-profiler" "comfyui-profiler"
+    install_general_node "https://github.com/willmiao/ComfyUI-Lora-Manager" "ComfyUI-Lora-Manager"
     # install_general_node "https://github.com/rakki194/ComfyUI-ImageCompare.git" "ComfyUI-ImageCompare"
 }
 
