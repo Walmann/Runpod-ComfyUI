@@ -160,13 +160,13 @@ bash installNodes.sh "default"
 border "To install models, open a WebTerminal and run installModels.sh (Found in root directory)\nTo install additional Nodes, open a WebTerminal and run installNodes.sh (Found in root directory)"
 
 
-border "Configuring extra_models_paths.yaml"
+border "Configuring extra_model_paths.yaml"
 cd $rootWorkspace
 mkdir -p /myModels
 cd /myModels
 mkdir -p checkpoints text_encoders clip clip_vision configs controlnet diffusion_models unet embeddings loras upscale_models vae audio_encoders model_patches
 
-cp /workspace/configs/extra_models_paths.yaml $rootComfyUI/
+cp /workspace/configs/extra_model_paths.yaml $rootComfyUI/
 
 
 border "ComfyUI: Staring ComfyUI"
