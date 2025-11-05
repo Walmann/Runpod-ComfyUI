@@ -93,7 +93,7 @@ install_my_default_nodes(){
     # install_general_node "https://github.com/Fannovel16/comfyui_controlnet_aux/" "comfyui_controlnet_aux"
     install_general_node "https://github.com/SeanScripts/ComfyUI-Unload-Model.git" "ComfyUI-Unload-Model"
     install_general_node "https://github.com/crystian/ComfyUI-Crystools" "ComfyUI-Crystools"
-    install_general_node "https://github.com/ryanontheinside/ComfyUI_ProfilerX" "ComfyUI_ProfilerX"
+    install_general_node "https://github.com/GreenLandisaLie/ComfyUI-RichText_BasicDynamicPrompts" "ComfyUI-RichText_BasicDynamicPrompts"
 
     # install_general_node "https://github.com/rakki194/ComfyUI-ImageCompare.git" "ComfyUI-ImageCompare"
 }
