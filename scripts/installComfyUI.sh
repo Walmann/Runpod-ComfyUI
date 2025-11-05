@@ -172,5 +172,6 @@ cp /workspace/configs/extra_model_paths.yaml $rootComfyUI/
 border "ComfyUI: Staring ComfyUI"
 cd $rootComfyUI
 
-/workspace/venv/bin/python3 -m pip install sageattention
-python3 main.py --use-sage-attention --lowvram --listen 0.0.0.0 --port 3001 --output-directory $rootWorkspace/myModels/Output
+# /workspace/venv/bin/python3 -m pip install sageattention
+# python3 main.py --use-sage-attention --lowvram --listen 0.0.0.0 --port 3001 --output-directory $rootWorkspace/myModels/Output
+python3 main.py --lowvram --listen 0.0.0.0 --port 3001 --output-directory $rootWorkspace/myModels/Output
