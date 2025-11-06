@@ -252,11 +252,12 @@ menu_function() {
     echo "1) My default nodes"
     echo "2) MagicNodes"
     echo "3) Wan 2.2 Animate nodes"
-    echo "4) JoyCaption"
-    echo "5) MMAudio"
-    echo "6) Video Nodes"
-    echo "7) Reactor Nodes + models"
-    echo "8) Comfyui-SecNodes + models"
+    echo "4) Wan 2.2 AnimatePreprocessing"
+    echo "5) JoyCaption"
+    echo "6) MMAudio"
+    echo "7) Video Nodes"
+    echo "8) Reactor Nodes + models"
+    echo "9) Comfyui-SecNodes + models"
 
 
 
