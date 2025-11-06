@@ -15,41 +15,10 @@ RUN apt update && \
   # python3.12-venv \
   python3.10-venv 
 
-  # python3.10-venv \
-  # # For running multiple services:
-  # supervisor \
-  # # Other
-  # nano \
-  # curl \
-  # wget \
-  # ffmpeg\
-  # pkg-config \
-  # tmux \
-  # git && \
-  # apt-get autoremove -y && \
-  # rm -rf /var/lib/apt/lists/* && \
-  # apt-get clean -y
-
-
-  
-# RUN pip install requests runpod==1.7.7 huggingface_hub
-
-# RUN echo "Installing CopyParty dependencies."
-
-# RUN	apt update
-# RUN apt-get install tmux -y
-
-# COPY . .
-# RUN chmod +x ./installComfyUI.sh
-# RUN chmod +x ./installCopyParty.sh
-
 COPY . .
 RUN chmod +x ./installContainer.sh
 
 RUN mkdir -p workspace
-
-
-# EXPOSE 8188
 
 # RUN echo "$PWD"
 # ENTRYPOINT ["ls"]
