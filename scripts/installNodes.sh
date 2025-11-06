@@ -94,6 +94,7 @@ install_my_default_nodes(){
     install_general_node "https://github.com/SeanScripts/ComfyUI-Unload-Model.git" "ComfyUI-Unload-Model"
     install_general_node "https://github.com/crystian/ComfyUI-Crystools" "ComfyUI-Crystools"
     install_general_node "https://github.com/GreenLandisaLie/ComfyUI-RichText_BasicDynamicPrompts" "ComfyUI-RichText_BasicDynamicPrompts"
+    install_general_node "https://github.com/Nourepide/ComfyUI-Allor" "ComfyUI-Allor"
 
     # install_general_node "https://github.com/rakki194/ComfyUI-ImageCompare.git" "ComfyUI-ImageCompare"
 }
@@ -134,7 +135,7 @@ install_wan_animate_nodes(){
     install_general_node "https://github.com/kijai/ComfyUI-KJNodes" "ComfyUI-KJNodes"
     install_general_node "https://github.com/kijai/ComfyUI-segment-anything-2" "ComfyUI-segment-anything-2"
 
-    install_wanAnimatePreprocessing
+    # install_wanAnimatePreprocessing
 
 }
 
@@ -276,22 +277,26 @@ menu_function() {
                 install_wan_animate_nodes
                 ;;
             4)
+                echo "Installing Wan 2.2 AnimatePreprocessing"
+                install_wanAnimatePreprocessing
+                ;;
+            5)
                 echo "Installing JoyCaption"
                 install_JoyCaptions
                 ;;
-            5)
+            6)
                 echo "Installing MMAudio"
                 install_MMAudio
                 ;;
-            6)
+            7)
                 echo "Installing Video Nodes"
                 install_VideoNodes
                 ;;
-            7)
+            8)
                 echo "Installing Reactor + models"
                 install_reactor
                 ;;
-            8)
+            9)
                 echo "Installing SecNodes + models"
                 install_SecNodes
                 ;;

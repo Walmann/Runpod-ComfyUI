@@ -38,14 +38,13 @@ menu_function() {
     echo "Choose model to download:"
     echo "1) Wan 2.2 14B I2V"
     echo "2) Wan 2.2 Animate"
-    echo "3) Qwen Image Edit 2509"
-    # echo "4) Qwen Image Edit"
+    echo "3) Wan 2.2 14B T2V"
+    echo "4) Qwen Image Edit 2509"
     echo "5) ReActor Models"
     echo "6) Flux Kontext Dev"
     echo "7) Flux1 Dev (GGUF)"
     echo "8) Upscale models"
     echo "9) Impack Pack Models"
-    echo "10) Wan 2.2 14B T2V"
     echo "11) SDXL Realviz"
     echo "12) Flux Krea-Dev"
 
@@ -74,6 +73,15 @@ menu_function() {
                 # download_models "unet/WAN2.2Animate" "https://huggingface.co/QuantStack/Wan2.2-Animate-14B-GGUF/resolve/main/Wan2.2-Animate-14B-Q8_0.gguf"
                 ;;
             3)
+                echo            "Downloading Wan2.2 14B T2V"
+                download_models "diffusion_models/WAN2.2" "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_t2v_high_noise_14B_fp8_scaled.safetensors"
+                download_models "diffusion_models/WAN2.2" "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_t2v_low_noise_14B_fp8_scaled.safetensors"
+                download_models "text_encoders" "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors"
+                download_models "vae" "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors"
+                download_models "loras/WAN2.2" "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_t2v_lightx2v_4steps_lora_v1.1_high_noise.safetensors"
+                download_models "loras/WAN2.2" "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_t2v_lightx2v_4steps_lora_v1.1_low_noise.safetensors"
+                ;;
+            4)
                 echo            "Downloading Qwen_image_edit_2509"
                 download_models "diffusion_models/qwen2509" "https://huggingface.co/Comfy-Org/Qwen-Image-Edit_ComfyUI/resolve/main/split_files/diffusion_models/qwen_image_edit_2509_fp8_e4m3fn.safetensors"
                 download_models "text_encoders" "https://huggingface.co/Comfy-Org/Qwen-Image_ComfyUI/resolve/main/split_files/text_encoders/qwen_2.5_vl_7b_fp8_scaled.safetensors"
@@ -114,15 +122,6 @@ menu_function() {
                 download_models "ultralytics/bbox" "https://huggingface.co/Bingsu/adetailer/resolve/main/person_yolov8s-seg.pt"
                 download_models "ultralytics/bbox" "https://huggingface.co/Bingsu/adetailer/resolve/main/hand_yolov9c.pt"
                 
-                ;;
-            10)
-                echo            "Downloading Wan2.2 14B T2V"
-                download_models "diffusion_models/WAN2.2" "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_t2v_high_noise_14B_fp8_scaled.safetensors"
-                download_models "diffusion_models/WAN2.2" "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_t2v_low_noise_14B_fp8_scaled.safetensors"
-                download_models "text_encoders" "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors"
-                download_models "vae" "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors"
-                download_models "loras/WAN2.2" "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_t2v_lightx2v_4steps_lora_v1.1_high_noise.safetensors"
-                download_models "loras/WAN2.2" "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_t2v_lightx2v_4steps_lora_v1.1_low_noise.safetensors"
                 ;;
             11)
                 echo            "Downloading Wan2.2 14B T2V"
