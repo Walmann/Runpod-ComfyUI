@@ -118,6 +118,7 @@ cp /workspace/configs/extra_model_paths.yaml $rootComfyUI/
 border "Installing Sage Attention 2.2.0"
 pip install wheel
 pip install sageattention==2.2.0 --no-build-isolation
+pip install sageattention==2.2.0 --no-build-isolation
 
 
 
