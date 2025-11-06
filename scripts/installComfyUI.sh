@@ -80,9 +80,8 @@ install_pip_packages(){
     pipInstall onnxruntime
     pipInstall onnxruntime-gpu
     pipInstall onnx
-    pipInstall sageattention
-
-
+    # pipInstall sageattention
+    
 
     # pip install opencv-python           | grep -v 'already satisfied'
     # pip install requests                | grep -v 'already satisfied'
@@ -184,13 +183,13 @@ mkdir -p checkpoints text_encoders clip clip_vision configs controlnet diffusion
 cp /workspace/configs/extra_model_paths.yaml $rootComfyUI/
 
 
+border "Installing Sage Attention 2.2.0"
+pip install sageattention==2.2.0 --no-build-isolation
+
+
+
 border "ComfyUI: Staring ComfyUI"
 cd $rootComfyUI
-
-
-/workspace/venv/bin/python3 -m pip install -U setuptools wheel
-
-/workspace/venv/bin/python3 -m pip install sageattention
 
 
 python3 main.py --use-sage-attention --lowvram --listen 0.0.0.0 --port 3001 --output-directory $rootWorkspace/myModels/Output
