@@ -47,6 +47,7 @@ menu_function() {
     echo "9) Impack Pack Models"
     echo "11) SDXL Realviz"
     echo "12) Flux Krea-Dev"
+    echo "13) HuMo"
 
 
     read -p "Skriv inn nummer: " -a choices
@@ -133,6 +134,14 @@ menu_function() {
                 download_models "text_encoders" "https://huggingface.co/comfyanonymous/flux_text_encoders/blob/main/clip_l.safetensors"
                 download_models "text_encoders" "https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp8_e4m3fn_scaled.safetensors"
                 download_models "vae" "https://huggingface.co/Comfy-Org/Lumina_Image_2.0_Repackaged/resolve/main/split_files/vae/ae.safetensors"
+                ;;
+            13)
+                echo "Downloading HuMo"
+                download_models "audio_encoders" "https://huggingface.co/Comfy-Org/HuMo_ComfyUI/resolve/main/split_files/audio_encoders/whisper_large_v3_fp16.safetensors"
+                download_models "diffusion_models/HuMo" "https://huggingface.co/Comfy-Org/HuMo_ComfyUI/resolve/main/split_files/diffusion_models/humo_17B_fp8_e4m3fn.safetensors"
+                download_models "loras" "https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/Lightx2v/lightx2v_I2V_14B_480p_cfg_step_distill_rank64_bf16.safetensors"
+                download_models "vae" "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors"
+                download_models "text_encoders" "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors"
                 ;;
             *)
                 echo "Ugyldig valg"

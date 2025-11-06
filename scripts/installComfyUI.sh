@@ -68,7 +68,7 @@ fi
 
 install_pip_packages(){
     pipInstall(){
-        /workspace/venv/bin/python3 -m pip install $1           | grep -v 'already satisfied'    
+        $rootWorkspace/venv/bin/python3 -m pip install $1           | grep -v 'already satisfied'    
     }
     # Install some known missing packages: 
     echo "Installing pip packages: "
@@ -112,12 +112,12 @@ mkdir -p /myModels
 cd /myModels
 mkdir -p checkpoints text_encoders clip clip_vision configs controlnet diffusion_models unet embeddings loras upscale_models vae audio_encoders model_patches
 
-cp /workspace/configs/extra_model_paths.yaml $rootComfyUI/
+cp $rootWorkspace/configs/extra_model_paths.yaml $rootComfyUI/
 
 
 border "Installing Sage Attention 2.2.0"
 pip install wheel
-cd /workspace/
+cd $rootWorkspace
 pip install sageattention==2.2.0 --no-build-isolation
 
 
@@ -125,7 +125,5 @@ pip install sageattention==2.2.0 --no-build-isolation
 
 border "ComfyUI: Staring ComfyUI"
 cd $rootComfyUI
-
-
 python3 main.py --use-sage-attention --lowvram --listen 0.0.0.0 --port 3001 --output-directory $rootWorkspace/myModels/Output
 # python3 main.py --lowvram --listen 0.0.0.0 --port 3001 --output-directory $rootWorkspace/myModels/Output
