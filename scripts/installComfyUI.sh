@@ -67,17 +67,32 @@ else
 fi
 
 install_pip_packages(){
+    pipInstall(){
+        /workspace/venv/bin/python3 -m pip install $1           | grep -v 'already satisfied'    
+    }
     # Install some known missing packages: 
     echo "Installing pip packages: "
-    pip install opencv-python           | grep -v 'already satisfied'
-    pip install requests                | grep -v 'already satisfied'
-    # pip install runpod==1.7.7           | grep -v 'already satisfied'
-    pip install huggingface_hub         | grep -v 'already satisfied'
-    pip install huggingface_hub[cli]    | grep -v 'already satisfied'
-    pip install onnxruntime             | grep -v 'already satisfied'
-    pip install onnxruntime-gpu         | grep -v 'already satisfied'
-    pip install onnx                    | grep -v 'already satisfied'
-    pip install sageattention           | grep -v 'already satisfied'
+    pipInstall opencv-python
+    pipInstall requests
+    pipInstall runpod==1.7.7
+    pipInstall huggingface_hub
+    pipInstall huggingface_hub[cli]
+    pipInstall onnxruntime
+    pipInstall onnxruntime-gpu
+    pipInstall onnx
+    pipInstall sageattention
+
+
+
+    # pip install opencv-python           | grep -v 'already satisfied'
+    # pip install requests                | grep -v 'already satisfied'
+    # # pip install runpod==1.7.7           | grep -v 'already satisfied'
+    # pip install huggingface_hub         | grep -v 'already satisfied'
+    # pip install huggingface_hub[cli]    | grep -v 'already satisfied'
+    # pip install onnxruntime             | grep -v 'already satisfied'
+    # pip install onnxruntime-gpu         | grep -v 'already satisfied'
+    # pip install onnx                    | grep -v 'already satisfied'
+    # pip install sageattention           | grep -v 'already satisfied'
 }
 
 

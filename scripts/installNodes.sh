@@ -20,7 +20,7 @@ install_dependencies(){
     # Installer dependencies hvis requirements.txt finnes
     if [ -f "requirements.txt" ]; then
         echo "Installing dependencies for $folderName"
-        pip install -r requirements.txt | grep -v 'already satisfied'
+        /workspace/venv/bin/python3 -m pip install -r requirements.txt | grep -v 'already satisfied'
     else
         if [ -d $folderName ]; then
             echo "No requirements.txt found for $folderName, skipping."
