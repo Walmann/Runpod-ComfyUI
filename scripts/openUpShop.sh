@@ -11,6 +11,6 @@ apt-get -qq install -y rsync
 # zip -r /workspace/closeUp.zip $rootComfyUI/output $rootUser/subgraphs $rootUser/workflows
 
 cd $rootWorkspace
-# rsync -R $relativeComfyUI/output ./myModels/ # After switch to VastAI, there is no need to change output folder.
-rsync -R $relativeComfyUI/user/default/subgraphs ./myModels/subgraphs
-rsync -R $relativeComfyUI/user/default/workflows ./myModels/workflows
+# rsync -R $relativeComfyUI/output ./myModels/ # No need for Output to be copied, right?
+rsync -R ./myModels/subgraphs $relativeComfyUI/user/default/subgraphs 
+rsync -R ./myModels/workflows $relativeComfyUI/user/default/workflows 
