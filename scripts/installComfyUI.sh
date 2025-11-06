@@ -82,77 +82,9 @@ install_pip_packages(){
     pipInstall onnx
     # pipInstall sageattention
     
-
-    # pip install opencv-python           | grep -v 'already satisfied'
-    # pip install requests                | grep -v 'already satisfied'
-    # # pip install runpod==1.7.7           | grep -v 'already satisfied'
-    # pip install huggingface_hub         | grep -v 'already satisfied'
-    # pip install huggingface_hub[cli]    | grep -v 'already satisfied'
-    # pip install onnxruntime             | grep -v 'already satisfied'
-    # pip install onnxruntime-gpu         | grep -v 'already satisfied'
-    # pip install onnx                    | grep -v 'already satisfied'
-    # pip install sageattention           | grep -v 'already satisfied'
 }
 
 
-# git_get_nodes(){
-#     local list_url="$1"
-#     local tmp_nodelist="/tmp/node_list.txt"
-
-#     # Download Node list
-#     echo "Downloading nodes list from: $list_url"
-#     curl -L --progress-bar "$list_url" -o "$tmp_nodelist"
-#     if [[ $? -ne 0 ]]; then
-#         echo "Could not download list."
-#         return 1
-#     fi
-
-
-#     cd "$rootCustomNodes" || exit 1
-
-
-#     # Gå gjennom hver linje i lista
-#     while IFS= read -r line; do
-
-#         cd "$rootCustomNodes" || exit 1
-#         # Skip empty lines and comments
-#         [[ -z "$line" || "$line" =~ ^# ]] && continue
-
-#         eval set -- $line
-#         repo_url=$1
-#         folderName=$2
-
-#         repo_url="${repo_url%\"}"
-#         repo_url="${repo_url#\"}"
-#         folderName="${folderName%\"}"
-#         folderName="${folderName#\"}"
-
-#         # # Sjekk om URLen er et git-repo eller en vanlig fil
-#         # if [[ "$repo_url" =~ \.git$ ]]; then
-#         # Git repository
-#         if [ -d "$folderName" ]; then
-#             echo "[$folderName] already exists, Skipping."
-#             # cd "$folderName" || exit 1
-#             # git pull
-#         else
-#             echo "[$folderName] not found, cloning now..."
-#             git clone "$repo_url" "$folderName"
-#             cd "$folderName" || exit 1
-
-#             # Installer dependencies hvis requirements.txt finnes
-#             if [ -f "requirements.txt" ]; then
-#                 echo "Installing dependencies for $folderName"
-#                 pip install -r requirements.txt | grep -v 'already satisfied'
-#             else
-#                 echo "No requirements.txt found for $folderName, skipping."
-#             fi
-#         fi
-
-
-#     done < "$tmp_nodelist"
-
-#     cd "$rootComfyUI" || exit 1
-# }
 
 
 
