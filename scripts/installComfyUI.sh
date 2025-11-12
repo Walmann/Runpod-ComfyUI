@@ -115,15 +115,16 @@ mkdir -p checkpoints text_encoders clip clip_vision configs controlnet diffusion
 cp $rootWorkspace/configs/extra_model_paths.yaml $rootComfyUI/
 
 
-border "Installing Sage Attention 2.2.0"
-pip install wheel
-cd $rootWorkspace
-pip install sageattention==2.2.0 --no-build-isolation
+# border "Installing Sage Attention 2.2.0"
+# pip install wheel
+# cd $rootWorkspace
+# pip install sageattention==2.2.0 --no-build-isolation
 
 
 
 
 border "ComfyUI: Staring ComfyUI"
 cd $rootComfyUI
-python3 main.py --use-sage-attention --lowvram --listen 0.0.0.0 --port 3001 --output-directory $rootWorkspace/myModels/Output
+# python3 main.py --use-sage-attention --lowvram --listen 0.0.0.0 --port 3001 --output-directory $rootWorkspace/myModels/Output
+python3 main.py --lowvram --listen 0.0.0.0 --port 3001 --output-directory $rootWorkspace/myModels/Output
 # python3 main.py --lowvram --listen 0.0.0.0 --port 3001 --output-directory $rootWorkspace/myModels/Output
