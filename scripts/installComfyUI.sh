@@ -126,5 +126,5 @@ cp $rootWorkspace/configs/extra_model_paths.yaml $rootComfyUI/
 border "ComfyUI: Staring ComfyUI"
 cd $rootComfyUI
 # python3 main.py --use-sage-attention --lowvram --listen 0.0.0.0 --port 3001 --output-directory $rootWorkspace/myModels/Output
-python3 main.py --lowvram --listen 0.0.0.0 --port 3001 --output-directory $rootWorkspace/myModels/Output
+python3 main.py --lowvram --listen 0.0.0.0 --port 3001 --output-directory $rootWorkspace/myModels/Output --user-directory $rootWorkspace/myModels/UserFolder
 # python3 main.py --lowvram --listen 0.0.0.0 --port 3001 --output-directory $rootWorkspace/myModels/Output
