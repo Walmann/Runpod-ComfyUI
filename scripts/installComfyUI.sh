@@ -120,7 +120,7 @@ cp $rootWorkspace/configs/extra_model_paths.yaml $rootComfyUI/
 # cd $rootWorkspace
 # pip install sageattention==2.2.0 --no-build-isolation
 
-
+mkdir -p $rootWorkspace/myModels/UserFolder
 
 
 border "ComfyUI: Staring ComfyUI"
