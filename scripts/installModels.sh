@@ -48,6 +48,7 @@ menu_function() {
     echo "11) SDXL Realviz"
     echo "12) Flux Krea-Dev"
     echo "13) HuMo"
+    echo "14) Z Image Turbo"
 
 
     read -p "Skriv inn nummer: " -a choices
@@ -143,6 +144,12 @@ menu_function() {
                 download_models "loras" "https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/Lightx2v/lightx2v_I2V_14B_480p_cfg_step_distill_rank64_bf16.safetensors"
                 download_models "vae" "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors"
                 download_models "text_encoders" "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors"
+                ;;
+            14)
+                echo "Downloading Z Image Turbu"
+                download_models "text_encoders" "https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/text_encoders/qwen_3_4b.safetensors"
+                download_models "diffusion_models/Zimage" "https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/diffusion_models/z_image_turbo_bf16.safetensors"
+                download_models "vae" "https://huggingface.co/Comfy-Org/Lumina_Image_2.0_Repackaged/resolve/main/split_files/vae/ae.safetensors"
                 ;;
             *)
                 echo "Ugyldig valg"
