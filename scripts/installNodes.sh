@@ -94,7 +94,7 @@ install_my_default_nodes(){
     install_general_node "https://github.com/SeanScripts/ComfyUI-Unload-Model.git" "ComfyUI-Unload-Model"
     install_general_node "https://github.com/crystian/ComfyUI-Crystools" "ComfyUI-Crystools"
     install_general_node "https://github.com/GreenLandisaLie/ComfyUI-RichText_BasicDynamicPrompts" "ComfyUI-RichText_BasicDynamicPrompts"
-    install_general_node "https://github.com/Nourepide/ComfyUI-Allor" "ComfyUI-Allor"
+    # install_general_node "https://github.com/Nourepide/ComfyUI-Allor" "ComfyUI-Allor"
     install_general_node "https://github.com/ShmuelRonen/multi-lora-stack" "multi-lora-stack"
 
     # install_general_node "https://github.com/rakki194/ComfyUI-ImageCompare.git" "ComfyUI-ImageCompare"
