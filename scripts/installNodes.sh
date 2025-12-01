@@ -96,6 +96,7 @@ install_my_default_nodes(){
     install_general_node "https://github.com/GreenLandisaLie/ComfyUI-RichText_BasicDynamicPrompts" "ComfyUI-RichText_BasicDynamicPrompts"
     # install_general_node "https://github.com/Nourepide/ComfyUI-Allor" "ComfyUI-Allor"
     install_general_node "https://github.com/ShmuelRonen/multi-lora-stack" "multi-lora-stack"
+    install_general_node "https://github.com/kijai/ComfyUI-KJNodes" "ComfyUI-KJNodes"
 
     # install_general_node "https://github.com/rakki194/ComfyUI-ImageCompare.git" "ComfyUI-ImageCompare"
 }
@@ -133,7 +134,6 @@ install_wanAnimatePreprocessing(){
 
 install_wan_animate_nodes(){
     install_general_node "https://github.com/Fannovel16/comfyui_controlnet_aux/" "comfyui_controlnet_aux"
-    install_general_node "https://github.com/kijai/ComfyUI-KJNodes" "ComfyUI-KJNodes"
     install_general_node "https://github.com/kijai/ComfyUI-segment-anything-2" "ComfyUI-segment-anything-2"
 
     # install_wanAnimatePreprocessing
