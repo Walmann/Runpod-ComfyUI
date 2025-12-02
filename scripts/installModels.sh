@@ -49,6 +49,7 @@ menu_function() {
     echo "12) Flux Krea-Dev"
     echo "13) HuMo"
     echo "14) Z Image Turbo"
+    echo "15) Z Image Turbo ControlNet"
 
 
     read -p "Skriv inn nummer: " -a choices
