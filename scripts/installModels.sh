@@ -151,6 +151,10 @@ menu_function() {
                 download_models "diffusion_models/Zimage" "https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/diffusion_models/z_image_turbo_bf16.safetensors"
                 download_models "vae" "https://huggingface.co/Comfy-Org/Lumina_Image_2.0_Repackaged/resolve/main/split_files/vae/ae.safetensors"
                 ;;
+            15)
+                echo "Downloading Z Image Turbo ControlNet"
+                download_models "controlnet" "https://huggingface.co/alibaba-pai/Z-Image-Turbo-Fun-Controlnet-Union/resolve/main/Z-Image-Turbo-Fun-Controlnet-Union.safetensors"
+                ;;
             *)
                 echo "Ugyldig valg"
                 ;;

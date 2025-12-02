@@ -178,6 +178,9 @@ install_JoyCaptions(){
     
     cd $cdCustomNodes
 }
+install_ControlNetNodes(){
+    install_general_node "https://github.com/Fannovel16/comfyui_controlnet_aux/" "comfyui_controlnet_aux"
+}
 
 install_reactor(){
     cd $cdCustomNodes
@@ -259,6 +262,7 @@ menu_function() {
     echo "7) Video Nodes"
     echo "8) Reactor Nodes + models"
     echo "9) Comfyui-SecNodes + models"
+    echo "10) ControlNet Nodes"
 
 
 
@@ -301,6 +305,10 @@ menu_function() {
             9)
                 echo "Installing SecNodes + models"
                 install_SecNodes
+                ;;
+            10)
+                echo "Installing ControlNet Nodes"
+                install_ControlNetNodes
                 ;;
             *)
                 echo "Ugyldig valg: $choice"
