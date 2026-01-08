@@ -50,6 +50,8 @@ menu_function() {
     echo "13) HuMo"
     echo "14) Z Image Turbo"
     echo "15) Z Image Turbo ControlNet"
+    echo "16) LTX-2 I2V"
+
 
 
     read -p "Skriv inn nummer: " -a choices
@@ -155,6 +157,14 @@ menu_function() {
             15)
                 echo "Downloading Z Image Turbo ControlNet"
                 download_models "controlnet" "https://huggingface.co/alibaba-pai/Z-Image-Turbo-Fun-Controlnet-Union/resolve/main/Z-Image-Turbo-Fun-Controlnet-Union.safetensors"
+                ;;
+            16)
+                echo "Downloading LTX 2 I2V"
+                download_models "checkpoints" "https://huggingface.co/Lightricks/LTX-2/resolve/main/ltx-2-19b-dev-fp8.safetensors"
+                download_models "text_encoders" "https://huggingface.co/Comfy-Org/ltx-2/resolve/main/split_files/text_encoders/gemma_3_12B_it.safetensors"
+                download_models "latent_upscale_models" "https://huggingface.co/Lightricks/LTX-2/resolve/main/ltx-2-spatial-upscaler-x2-1.0.safetensors"
+                download_models "loras" "https://huggingface.co/Lightricks/LTX-2-19b-LoRA-Camera-Control-Dolly-Left/resolve/main/ltx-2-19b-lora-camera-control-dolly-left.safetensors"
+                download_models "loras" "https://huggingface.co/Lightricks/LTX-2/resolve/main/ltx-2-19b-distilled-lora-384.safetensors"
                 ;;
             *)
                 echo "Ugyldig valg"
