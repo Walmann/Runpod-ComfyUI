@@ -47,7 +47,7 @@ border "Updating system"
 
 apt-get -qq update && \
   apt-get -qq  upgrade -y && \
-  apt-get -qq  install -y python3-dev python3-pip python3.10-venv supervisor nano curl wget ffmpeg pkg-config tmux git
+  apt-get -qq  install -y python3-dev python3-pip python3.10-venv supervisor nano curl wget ffmpeg pkg-config tmux git libsm6 libxext6
 
 echo "Finnished updating system"
 
@@ -56,5 +56,4 @@ border "Downloading scripts"
 download_model_and_node_list
 
 border "Starting supervisor, to run multiple processes"
-# Start processes.
 supervisord -c ./service_script.conf
