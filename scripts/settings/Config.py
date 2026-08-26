@@ -5,12 +5,12 @@ from pathlib import Path
 from common.log import log
 
 
-def config():
+def config(isDebug = False):
     config = configparser.ConfigParser(interpolation=configparser.ExtendedInterpolation())
     # Add sections and key-value pairs
-    config.add_section('Default') 
-    config.set("Default",'REPO_URL', os.getenv("GIT_REPO_URL", "https://github.com/YOUR-REPO/setup.git"))
-    config.set("Default",'REPO_BRANCH', os.getenv("GIT_REPO_BRANCH", "main"))
+    # config.add_section('Default') 
+    # config.set("Default",'REPO_URL', os.getenv("GIT_REPO_URL", "https://github.com/YOUR-REPO/setup.git"))
+    # config.set("Default",'REPO_BRANCH', os.getenv("GIT_REPO_BRANCH", "main"))
     
     config.add_section('API_Key') 
     config.set("API_Key","HF_TOKEN", os.getenv("HF_TOKEN", ""))
@@ -36,6 +36,10 @@ def config():
     # log("Writing configuration to file", "DEBUG")
     # with open('config.ini', 'w') as configfile:
     #     config.write(configfile)
+
+    if isDebug:
+        config.set("Paths","WORKSPACE",str(Path("/workspace")))
+
     return config
 
 
