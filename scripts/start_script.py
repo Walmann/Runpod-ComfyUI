@@ -13,7 +13,7 @@ from scripts import installers
 from common import log
 from settings import config
 from nodes import node_registry, Install_nodes, get_repo_section
-
+from models import huggingface
 
 def main():
     log("Creating settings file")
@@ -21,6 +21,9 @@ def main():
 
     log("Running all installers")
     installers.runpod_comfyui() # Install requirements for this very script. 
+
+    log("Setting up Hugginface Downloader")
+    installers.huggingface()
 
     log("Installing ComfyUI", "INFO")
     installers.comfyui(settings=setting)
@@ -36,7 +39,8 @@ def main():
         Install_nodes(settings=setting, nodes=nodes)
 
         log("Downloading MiniMaxH3 models")
-        
+        huggingface.hugginface_downloadModel(settings=setting)
+    
 
 if __name__ == "__main__":
     main()

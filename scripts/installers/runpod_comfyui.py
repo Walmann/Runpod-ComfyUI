@@ -8,6 +8,7 @@ def runpod_comfyui():
         "GitPython",
         "tqdm",
         "aiohttp",
+        "huggingface_hub"
         
     ]
     pipInstall(requirements)
