@@ -12,7 +12,8 @@
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}/scripts",
             "env": {
-                "PYTHONPATH": "${workspaceFolder}/scripts"
+                "PYTHONPATH": "${workspaceFolder}/scripts",
+                "envFile": "${workspaceFolder}/.env"
             }
         }
     ]
