@@ -1,6 +1,6 @@
 from common.log import log
 from common import pipInstall, pipInstall_file
-from common import git
+from common import git_installer
 from settings import config
 from git import Repo
 
@@ -14,7 +14,7 @@ def comfyui(settings:ConfigParser):
     log("Installing ComfyUI requirements")
     comfyUI_Git_Repo = "https://github.com/Comfy-Org/ComfyUI"
 
-    git.install(repo=comfyUI_Git_Repo, dir=Path(settings.get("Paths", "COMFYUI_DIR")))
+    git_installer.install(repo=comfyUI_Git_Repo, dir=Path(settings.get("Paths", "COMFYUI_DIR")))
 
 
     log("Installing ComfyUI requirements")

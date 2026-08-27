@@ -2,11 +2,13 @@ import huggingface_hub
 from configparser import ConfigParser
 from pathlib import Path
 
-from model_registry import model_registry
+from .model_registry import model_registry
 from common import log
 download_DryRun = False
 
 def hugginface_downloadModel(settings:ConfigParser):
+    # TODO Create multi-Thread downloading.
+
     modelList = model_registry()
     for item in modelList:
         i = modelList[item]
