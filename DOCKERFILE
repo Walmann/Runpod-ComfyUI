@@ -1,19 +1,11 @@
 # Stage 1: Base Image
 # ashleykza/a1111:1.10.0.post7
 # FROM nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04
-FROM nvidia/cuda:12.8.1-cudnn-devel-ubuntu22.04
+FROM runpod/pytorch:1.0.2-cu1300-torch280-ubuntu2404
 
-# Setting timezome. This saves time when installing python. 
-# RUN ln -snf /usr/share/zoneinfo/$CONTAINER_TIMEZONE /etc/localtime && echo $CONTAINER_TIMEZONE > /etc/timezone
 
-RUN apt update && \
-  apt upgrade -y && \
-  apt install -y \
-  # Python:
-  python3-dev \
-  python3-pip \
-  # python3.12-venv \
-  python3.10-venv 
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONUNBUFFERED=1
 
 COPY . .
 RUN chmod +x ./installContainer.sh
