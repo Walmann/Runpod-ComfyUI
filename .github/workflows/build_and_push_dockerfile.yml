@@ -4,10 +4,12 @@ on:
   release:
     types: [published]
   push:
-    paths:
-      - /
     paths-ignore:
-      /*/*
+      - scripts/**
+      - .vscode/**
+      - .venv/**
+      - .github/**
+
     # branches:
     #   - main
   workflow_dispatch:
