@@ -55,7 +55,7 @@ echo "Finnished updating system"
 # border "Downloading scripts"
 # download_model_and_node_list
 
-git clone "https://github.com/Walmann/Runpod-ComfyUI"
+git clone https://github.com/Walmann/Runpod-ComfyUI.git
 cd "/Runpod-ComfyUI/"
 
 border "Starting supervisor, to run multiple processes"
