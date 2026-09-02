@@ -5,7 +5,6 @@
 # sys.path.insert(0, str(ROOT_DIR))
 
 
-from datetime import datetime
 import os
 import subprocess
 import configparser

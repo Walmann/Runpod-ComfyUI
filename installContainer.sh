@@ -55,5 +55,8 @@ echo "Finnished updating system"
 # border "Downloading scripts"
 # download_model_and_node_list
 
+git clone "Walmann/Runpod-ComfyUI"
+cd "/Runpod-ComfyUI/"
+
 border "Starting supervisor, to run multiple processes"
 supervisord -c ./service_script.conf
