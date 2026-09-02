@@ -4,8 +4,12 @@ on:
   release:
     types: [published]
   push:
-    branches:
-      - main
+    paths:
+      - /
+    paths-ignore:
+      /*/*
+    # branches:
+    #   - main
   workflow_dispatch:
 
 jobs:
