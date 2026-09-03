@@ -29,11 +29,11 @@ def config(isDebug = False):
 
 
     # Set workspace dir. 
-    workspaceDir = ""
+    workspaceDir: str = ""
     if os.getenv("WORKSPACE") == "":
         workspaceDir = str(Path("/workspace/runpod-slim"))
     else: 
-        workspaceDir = os.getenv("WORKSPACE")
+        workspaceDir = str(os.getenv("WORKSPACE"))
 
 
     config.add_section('Paths') 

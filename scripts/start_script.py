@@ -30,7 +30,7 @@ def main():
     pipInstall(requirements)
 
     log("Starting ComfyUI setup")
-    from scripts.start_ComfyUI import startComfySetup
+    from start_ComfyUI import startComfySetup
     startComfySetup(setting= setting)
 
 
