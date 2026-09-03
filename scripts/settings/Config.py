@@ -28,9 +28,16 @@ def config(isDebug = False):
     config.set("Ports","JUPYTER_PORT", os.getenv("JUPYTER_PORT", "8888"))
 
 
-    
+    # Set workspace dir. 
+    workspaceDir = ""
+    if os.getenv("WORKSPACE") == "":
+        workspaceDir = str(Path("/workspace/runpod-slim"))
+    else: 
+        workspaceDir = os.getenv("WORKSPACE")
+
+
     config.add_section('Paths') 
-    config.set("Paths","WORKSPACE",             str(Path("/workspace")))
+    config.set("Paths","WORKSPACE",             workspaceDir)
     config.set("Paths","COMFYUI_DIR",           config.get("Paths", "WORKSPACE") +"\\ComfyUI")
     config.set("Paths","COMFYUI_MODELS_DIR",    config.get("Paths", "COMFYUI_DIR") +"\\models")
     config.set("Paths","COMFYUI_NODES_DIR",     config.get("Paths", "COMFYUI_DIR") + "\\custom_nodes",)
